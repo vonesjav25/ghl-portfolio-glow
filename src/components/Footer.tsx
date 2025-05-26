@@ -10,7 +10,7 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center mb-8">
           <Link to="/" className="text-2xl font-bold text-primary mb-4 md:mb-0">
-            John.Doe<span className="text-foreground">_</span>
+            Alvin.Javelosa<span className="text-foreground">_</span>
           </Link>
           
           <div className="flex items-center space-x-6">
@@ -45,7 +45,7 @@ const Footer = () => {
         <div className="border-t border-border pt-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-sm text-muted-foreground mb-4 md:mb-0">
-              © {currentYear} John Doe. All rights reserved.
+              © {currentYear} Alvin Javelosa. All rights reserved.
             </p>
             
             <nav className="flex space-x-4">

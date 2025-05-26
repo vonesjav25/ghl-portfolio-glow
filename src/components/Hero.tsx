@@ -31,7 +31,7 @@ const Hero = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center">
           <h1 className="animate-fade-in text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-            Hello, I'm <span className="text-gradient">John Doe</span>
+            Hello, I'm <span className="text-gradient">Alvin Javelosa</span>
           </h1>
           <div className="h-8 md:h-12 mb-8">
             <h2 className="text-xl md:text-2xl lg:text-3xl font-mono text-muted-foreground">
