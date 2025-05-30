@@ -27,25 +27,28 @@ const Hero = () => {
 
   return (
     <section className="pt-28 pb-20 md:pt-36 md:pb-32 relative overflow-hidden">
-      <div className="absolute inset-0 bg-grid -z-10"></div>
+      <div className="absolute inset-0 bg-grid-animated -z-10"></div>
+      <div className="absolute top-20 left-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl floating"></div>
+      <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/10 rounded-full blur-3xl floating" style={{ animationDelay: '2s' }}></div>
+      
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center">
           <h1 className="animate-fade-in text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-            Hello, I'm <span className="text-gradient">Alvin Javelosa</span>
+            Hello, I'm <span className="text-gradient pulse-orange">Alvin Javelosa</span>
           </h1>
           <div className="h-8 md:h-12 mb-8">
-            <h2 className="text-xl md:text-2xl lg:text-3xl font-mono text-muted-foreground">
-              {typedText}<span className={`inline-block w-1 h-5 md:h-6 bg-primary ml-1 ${isTyping ? 'animate-pulse' : 'opacity-0'}`}></span>
+            <h2 className="text-xl md:text-2xl lg:text-3xl font-mono text-gradient-orange">
+              {typedText}<span className={`inline-block w-1 h-5 md:h-6 bg-primary ml-1 glow-orange ${isTyping ? 'animate-pulse' : 'opacity-0'}`}></span>
             </h2>
           </div>
           <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
             Crafting beautiful, responsive web experiences and leveraging GoHighLevel to help businesses grow.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button asChild size="lg" className="px-8">
+            <Button asChild size="lg" className="px-8 glow-orange-strong hover:glow-orange transition-all duration-300">
               <a href="#projects">View My Work</a>
             </Button>
-            <Button asChild size="lg" variant="outline" className="px-8">
+            <Button asChild size="lg" variant="outline" className="px-8 border-glow hover:bg-primary/10 transition-all duration-300">
               <a href="#contact">Get In Touch</a>
             </Button>
           </div>
