@@ -1,7 +1,7 @@
 
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import ParticleGame from "@/components/ParticleGame";
+import PuzzleGame from "@/components/ParticleGame";
 import About from "@/components/About";
 import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
@@ -13,7 +13,7 @@ const Index = () => {
       <Header />
       <main>
         <Hero />
-        <ParticleGame />
+        <PuzzleGame />
         <About />
         <Projects />
         <Contact />

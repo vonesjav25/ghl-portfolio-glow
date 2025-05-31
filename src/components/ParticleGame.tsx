@@ -1,143 +1,103 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { Button } from "@/components/ui/button";
+import { Puzzle } from "lucide-react";
 
-interface Particle {
-  x: number;
-  y: number;
-  vx: number;
-  vy: number;
-  life: number;
-  maxLife: number;
-  color: string;
+interface Tile {
+  id: number;
+  value: number;
+  isEmpty: boolean;
 }
 
-const ParticleGame = () => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const animationRef = useRef<number>();
-  const [particles, setParticles] = useState<Particle[]>([]);
-  const [score, setScore] = useState(0);
+const PuzzleGame = () => {
+  const [tiles, setTiles] = useState<Tile[]>([]);
+  const [moves, setMoves] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isWon, setIsWon] = useState(false);
+  const [timer, setTimer] = useState(0);
+  const timerRef = useRef<NodeJS.Timeout>();
 
-  const colors = ['#ff7518', '#ff8c42', '#ffa366', '#ffb380', '#ff6b00'];
+  const initializePuzzle = () => {
+    const initialTiles: Tile[] = [];
+    for (let i = 1; i <= 8; i++) {
+      initialTiles.push({ id: i, value: i, isEmpty: false });
+    }
+    initialTiles.push({ id: 9, value: 9, isEmpty: true });
+    
+    // Shuffle the tiles
+    const shuffled = [...initialTiles];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    
+    setTiles(shuffled);
+    setMoves(0);
+    setIsWon(false);
+    setTimer(0);
+  };
 
-  const createParticle = (x: number, y: number) => {
-    const newParticles: Particle[] = [];
+  const checkWin = (currentTiles: Tile[]) => {
     for (let i = 0; i < 8; i++) {
-      newParticles.push({
-        x,
-        y,
-        vx: (Math.random() - 0.5) * 8,
-        vy: (Math.random() - 0.5) * 8,
-        life: 60,
-        maxLife: 60,
-        color: colors[Math.floor(Math.random() * colors.length)]
-      });
+      if (currentTiles[i].value !== i + 1) return false;
     }
-    return newParticles;
+    return currentTiles[8].isEmpty;
   };
 
-  const handleCanvasClick = (e: React.MouseEvent<HTMLCanvasElement>) => {
-    if (!isPlaying) return;
-    
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    
-    const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    
-    const newParticles = createParticle(x, y);
-    setParticles(prev => [...prev, ...newParticles]);
-    setScore(prev => prev + 10);
-  };
+  const moveTile = (tileIndex: number) => {
+    if (!isPlaying || isWon) return;
 
-  const animate = () => {
-    const canvas = canvasRef.current;
-    const ctx = canvas?.getContext('2d');
-    if (!canvas || !ctx) return;
-
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const newTiles = [...tiles];
+    const emptyIndex = newTiles.findIndex(tile => tile.isEmpty);
     
-    // Draw background gradient
-    const gradient = ctx.createRadialGradient(
-      canvas.width / 2, canvas.height / 2, 0,
-      canvas.width / 2, canvas.height / 2, canvas.width / 2
+    // Check if the tile can move (adjacent to empty space)
+    const canMove = (
+      (tileIndex === emptyIndex - 1 && emptyIndex % 3 !== 0) || // left
+      (tileIndex === emptyIndex + 1 && tileIndex % 3 !== 0) || // right
+      (tileIndex === emptyIndex - 3) || // up
+      (tileIndex === emptyIndex + 3) // down
     );
-    gradient.addColorStop(0, 'rgba(255, 117, 24, 0.1)');
-    gradient.addColorStop(1, 'rgba(0, 0, 0, 0.8)');
-    ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    setParticles(prev => {
-      const updatedParticles = prev
-        .map(particle => ({
-          ...particle,
-          x: particle.x + particle.vx,
-          y: particle.y + particle.vy,
-          vy: particle.vy + 0.2, // gravity
-          life: particle.life - 1
-        }))
-        .filter(particle => particle.life > 0);
-
-      // Draw particles
-      updatedParticles.forEach(particle => {
-        const alpha = particle.life / particle.maxLife;
-        ctx.globalAlpha = alpha;
-        ctx.fillStyle = particle.color;
-        ctx.beginPath();
-        ctx.arc(particle.x, particle.y, 3 * alpha, 0, Math.PI * 2);
-        ctx.fill();
-        
-        // Add glow effect
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = particle.color;
-        ctx.fill();
-        ctx.shadowBlur = 0;
-      });
-
-      ctx.globalAlpha = 1;
-      return updatedParticles;
-    });
-
-    if (isPlaying) {
-      animationRef.current = requestAnimationFrame(animate);
+    if (canMove) {
+      [newTiles[tileIndex], newTiles[emptyIndex]] = [newTiles[emptyIndex], newTiles[tileIndex]];
+      setTiles(newTiles);
+      setMoves(prev => prev + 1);
+      
+      if (checkWin(newTiles)) {
+        setIsWon(true);
+        setIsPlaying(false);
+        if (timerRef.current) clearInterval(timerRef.current);
+      }
     }
   };
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    canvas.width = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
-  }, []);
-
-  useEffect(() => {
-    if (isPlaying) {
-      animationRef.current = requestAnimationFrame(animate);
-    } else {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
-    }
-
-    return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
-    };
-  }, [isPlaying]);
 
   const startGame = () => {
+    initializePuzzle();
     setIsPlaying(true);
-    setScore(0);
-    setParticles([]);
+    setTimer(0);
+    
+    timerRef.current = setInterval(() => {
+      setTimer(prev => prev + 1);
+    }, 1000);
   };
 
   const stopGame = () => {
     setIsPlaying(false);
-    setParticles([]);
+    setTiles([]);
+    if (timerRef.current) clearInterval(timerRef.current);
+    setTimer(0);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, []);
+
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
 
   return (
@@ -146,17 +106,18 @@ const ParticleGame = () => {
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gradient">
-            Interactive Particle Experience
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gradient flex items-center justify-center gap-3">
+            <Puzzle className="w-8 h-8 text-primary" />
+            Sliding Puzzle Challenge
           </h2>
           <p className="text-muted-foreground mb-6">
-            Click anywhere on the canvas to create beautiful particle effects!
+            Arrange the numbers 1-8 in order by sliding tiles into the empty space!
           </p>
           
           <div className="flex items-center justify-center gap-4 mb-6">
-            {!isPlaying ? (
+            {!isPlaying && !isWon ? (
               <Button onClick={startGame} className="glow-orange-strong">
-                Start Experience
+                Start Puzzle
               </Button>
             ) : (
               <Button onClick={stopGame} variant="outline" className="border-glow">
@@ -165,26 +126,48 @@ const ParticleGame = () => {
             )}
             
             {isPlaying && (
-              <div className="text-lg font-mono text-gradient-orange">
-                Score: {score}
+              <div className="flex gap-6 text-lg font-mono text-gradient-orange">
+                <div>Moves: {moves}</div>
+                <div>Time: {formatTime(timer)}</div>
               </div>
             )}
           </div>
+
+          {isWon && (
+            <div className="mb-6 p-4 bg-primary/20 border border-primary/40 rounded-lg glow-orange">
+              <h3 className="text-xl font-bold text-gradient mb-2">🎉 Congratulations!</h3>
+              <p className="text-muted-foreground">
+                You solved it in {moves} moves and {formatTime(timer)}!
+              </p>
+            </div>
+          )}
         </div>
 
-        <div className="max-w-4xl mx-auto">
-          <canvas
-            ref={canvasRef}
-            onClick={handleCanvasClick}
-            className={`w-full h-80 border-2 border-primary/30 rounded-lg bg-black/50 ${
-              isPlaying ? 'cursor-crosshair' : 'cursor-pointer'
-            } transition-all duration-300 hover:border-primary/60`}
-            style={{ maxHeight: '320px' }}
-          />
+        <div className="max-w-md mx-auto">
+          {tiles.length > 0 && (
+            <div className="grid grid-cols-3 gap-2 p-4 bg-black/50 rounded-lg border-2 border-primary/30">
+              {tiles.map((tile, index) => (
+                <div
+                  key={tile.id}
+                  onClick={() => moveTile(index)}
+                  className={`
+                    aspect-square flex items-center justify-center text-2xl font-bold rounded-lg cursor-pointer transition-all duration-200
+                    ${tile.isEmpty 
+                      ? 'bg-transparent' 
+                      : 'bg-gradient-to-br from-primary/80 to-accent/80 text-white hover:from-primary hover:to-accent hover:scale-105 glow-orange'
+                    }
+                    ${isPlaying && !tile.isEmpty ? 'hover:shadow-lg' : ''}
+                  `}
+                >
+                  {!tile.isEmpty && tile.value}
+                </div>
+              ))}
+            </div>
+          )}
           
           {isPlaying && (
             <p className="text-center mt-4 text-sm text-muted-foreground animate-pulse">
-              Click on the canvas to create particle bursts! Each click gives you 10 points.
+              Click adjacent tiles to move them into the empty space!
             </p>
           )}
         </div>
@@ -193,4 +176,4 @@ const ParticleGame = () => {
   );
 };
 
-export default ParticleGame;
+export default PuzzleGame;
