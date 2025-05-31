@@ -5,8 +5,9 @@ import { Puzzle } from "lucide-react";
 
 interface Tile {
   id: number;
-  value: number;
+  position: number;
   isEmpty: boolean;
+  backgroundPosition: string;
 }
 
 const PuzzleGame = () => {
@@ -19,10 +20,26 @@ const PuzzleGame = () => {
 
   const initializePuzzle = () => {
     const initialTiles: Tile[] = [];
-    for (let i = 1; i <= 8; i++) {
-      initialTiles.push({ id: i, value: i, isEmpty: false });
+    
+    // Create 8 image tiles and 1 empty tile
+    for (let i = 0; i < 8; i++) {
+      const row = Math.floor(i / 3);
+      const col = i % 3;
+      initialTiles.push({
+        id: i + 1,
+        position: i + 1,
+        isEmpty: false,
+        backgroundPosition: `${-col * 33.33}% ${-row * 33.33}%`
+      });
     }
-    initialTiles.push({ id: 9, value: 9, isEmpty: true });
+    
+    // Add empty tile
+    initialTiles.push({
+      id: 9,
+      position: 9,
+      isEmpty: true,
+      backgroundPosition: ''
+    });
     
     // Shuffle the tiles
     const shuffled = [...initialTiles];
@@ -39,7 +56,7 @@ const PuzzleGame = () => {
 
   const checkWin = (currentTiles: Tile[]) => {
     for (let i = 0; i < 8; i++) {
-      if (currentTiles[i].value !== i + 1) return false;
+      if (currentTiles[i].position !== i + 1) return false;
     }
     return currentTiles[8].isEmpty;
   };
@@ -108,10 +125,10 @@ const PuzzleGame = () => {
         <div className="text-center mb-8">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gradient flex items-center justify-center gap-3">
             <Puzzle className="w-8 h-8 text-primary" />
-            Sliding Puzzle Challenge
+            Neon Portrait Puzzle
           </h2>
           <p className="text-muted-foreground mb-6">
-            Arrange the numbers 1-8 in order by sliding tiles into the empty space!
+            Arrange the image pieces to complete the neon portrait!
           </p>
           
           <div className="flex items-center justify-center gap-4 mb-6">
@@ -135,9 +152,9 @@ const PuzzleGame = () => {
 
           {isWon && (
             <div className="mb-6 p-4 bg-primary/20 border border-primary/40 rounded-lg glow-orange">
-              <h3 className="text-xl font-bold text-gradient mb-2">🎉 Congratulations!</h3>
+              <h3 className="text-xl font-bold text-gradient mb-2">🎉 Perfect!</h3>
               <p className="text-muted-foreground">
-                You solved it in {moves} moves and {formatTime(timer)}!
+                You completed the neon portrait in {moves} moves and {formatTime(timer)}!
               </p>
             </div>
           )}
@@ -145,21 +162,30 @@ const PuzzleGame = () => {
 
         <div className="max-w-md mx-auto">
           {tiles.length > 0 && (
-            <div className="grid grid-cols-3 gap-2 p-4 bg-black/50 rounded-lg border-2 border-primary/30">
+            <div className="grid grid-cols-3 gap-2 p-4 bg-black/50 rounded-lg border-2 border-primary/30 glow-orange">
               {tiles.map((tile, index) => (
                 <div
                   key={tile.id}
                   onClick={() => moveTile(index)}
                   className={`
-                    aspect-square flex items-center justify-center text-2xl font-bold rounded-lg cursor-pointer transition-all duration-200
+                    aspect-square rounded-lg cursor-pointer transition-all duration-200 relative overflow-hidden
                     ${tile.isEmpty 
-                      ? 'bg-transparent' 
-                      : 'bg-gradient-to-br from-primary/80 to-accent/80 text-white hover:from-primary hover:to-accent hover:scale-105 glow-orange'
+                      ? 'bg-transparent border-2 border-dashed border-primary/30' 
+                      : 'hover:scale-105 glow-orange-strong border-2 border-primary/50'
                     }
                     ${isPlaying && !tile.isEmpty ? 'hover:shadow-lg' : ''}
                   `}
+                  style={{
+                    backgroundImage: tile.isEmpty ? 'none' : `url(/lovable-uploads/3c83727b-caae-4c4b-b62e-356af6a79aa8.png)`,
+                    backgroundSize: tile.isEmpty ? 'none' : '300% 300%',
+                    backgroundPosition: tile.backgroundPosition,
+                    backgroundRepeat: 'no-repeat',
+                    filter: tile.isEmpty ? 'none' : 'contrast(1.2) saturate(1.5) hue-rotate(15deg) drop-shadow(0 0 8px rgba(255, 117, 24, 0.6))'
+                  }}
                 >
-                  {!tile.isEmpty && tile.value}
+                  {!tile.isEmpty && (
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 mix-blend-overlay"></div>
+                  )}
                 </div>
               ))}
             </div>
@@ -167,7 +193,7 @@ const PuzzleGame = () => {
           
           {isPlaying && (
             <p className="text-center mt-4 text-sm text-muted-foreground animate-pulse">
-              Click adjacent tiles to move them into the empty space!
+              Click adjacent pieces to move them into the empty space!
             </p>
           )}
         </div>
