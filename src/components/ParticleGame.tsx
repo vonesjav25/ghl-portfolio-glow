@@ -29,7 +29,7 @@ const PuzzleGame = () => {
         id: i + 1,
         position: i + 1,
         isEmpty: false,
-        backgroundPosition: `${-col * 100}% ${-row * 100}%`
+        backgroundPosition: `${col * -33.33}% ${row * -33.33}%`
       });
     }
     
