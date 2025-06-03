@@ -29,7 +29,7 @@ const PuzzleGame = () => {
         id: i + 1,
         position: i + 1,
         isEmpty: false,
-        backgroundPosition: `${-col * 33.33}% ${-row * 33.33}%`
+        backgroundPosition: `${-col * 100}% ${-row * 100}%`
       });
     }
     
@@ -176,7 +176,7 @@ const PuzzleGame = () => {
                     ${isPlaying && !tile.isEmpty ? 'hover:shadow-lg' : ''}
                   `}
                   style={{
-                    backgroundImage: tile.isEmpty ? 'none' : `url(/lovable-uploads/3c83727b-caae-4c4b-b62e-356af6a79aa8.png)`,
+                    backgroundImage: tile.isEmpty ? 'none' : `url(/lovable-uploads/c66ec270-abc6-4ae0-a49b-393693a52b13.png)`,
                     backgroundSize: tile.isEmpty ? 'none' : '300% 300%',
                     backgroundPosition: tile.backgroundPosition,
                     backgroundRepeat: 'no-repeat',
