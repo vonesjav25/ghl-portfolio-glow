@@ -20,7 +20,7 @@ const PuzzleGame = () => {
 
   const initializePuzzle = () => {
     const initialTiles: Tile[] = [];
-    
+
     // Create 8 image tiles and 1 empty tile
     for (let i = 0; i < 8; i++) {
       const row = Math.floor(i / 3);
@@ -29,7 +29,7 @@ const PuzzleGame = () => {
         id: i + 1,
         position: i + 1,
         isEmpty: false,
-        backgroundPosition: `${col * -33.33}% ${row * -33.33}%`
+        backgroundPosition: `${col * 50}% ${row * 50}%`
       });
     }
     
@@ -176,7 +176,7 @@ const PuzzleGame = () => {
                     ${isPlaying && !tile.isEmpty ? 'hover:shadow-lg' : ''}
                   `}
                   style={{
-                    backgroundImage: tile.isEmpty ? 'none' : `url(/lovable-uploads/c66ec270-abc6-4ae0-a49b-393693a52b13.png)`,
+                    backgroundImage: tile.isEmpty ? 'none' : `url(/lovable-uploads/myface.png)`,
                     backgroundSize: tile.isEmpty ? 'none' : '300% 300%',
                     backgroundPosition: tile.backgroundPosition,
                     backgroundRepeat: 'no-repeat',

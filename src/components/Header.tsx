@@ -26,7 +26,7 @@ const Header = () => {
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
         <Link to="/" className="text-2xl font-bold text-primary">
-          Alvin.Javelosa<span className="text-foreground">_</span>
+          ALVIN<span className="text-foreground">_</span>
         </Link>
         
         {/* Desktop Navigation */}
