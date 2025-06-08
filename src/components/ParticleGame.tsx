@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Puzzle } from "lucide-react";
@@ -123,8 +122,8 @@ const PuzzleGame = () => {
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gradient flex items-center justify-center gap-3">
-            <Puzzle className="w-8 h-8 text-primary" />
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-violet-400 via-purple-500 to-green-400 bg-clip-text text-transparent flex items-center justify-center gap-3">
+            <Puzzle className="w-8 h-8 text-violet-400" />
             Neon Portrait Puzzle
           </h2>
           <p className="text-muted-foreground mb-6">
@@ -133,17 +132,17 @@ const PuzzleGame = () => {
           
           <div className="flex items-center justify-center gap-4 mb-6">
             {!isPlaying && !isWon ? (
-              <Button onClick={startGame} className="glow-orange-strong">
+              <Button onClick={startGame} className="bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 shadow-lg shadow-violet-500/30">
                 Start Puzzle
               </Button>
             ) : (
-              <Button onClick={stopGame} variant="outline" className="border-glow">
+              <Button onClick={stopGame} variant="outline" className="border-violet-400 text-violet-400 hover:bg-violet-400/10">
                 Reset
               </Button>
             )}
             
             {isPlaying && (
-              <div className="flex gap-6 text-lg font-mono text-gradient-orange">
+              <div className="flex gap-6 text-lg font-mono bg-gradient-to-r from-violet-400 to-green-400 bg-clip-text text-transparent">
                 <div>Moves: {moves}</div>
                 <div>Time: {formatTime(timer)}</div>
               </div>
@@ -151,8 +150,8 @@ const PuzzleGame = () => {
           </div>
 
           {isWon && (
-            <div className="mb-6 p-4 bg-primary/20 border border-primary/40 rounded-lg glow-orange">
-              <h3 className="text-xl font-bold text-gradient mb-2">🎉 Perfect!</h3>
+            <div className="mb-6 p-4 bg-violet-500/20 border border-violet-400/40 rounded-lg shadow-lg shadow-violet-500/20">
+              <h3 className="text-xl font-bold bg-gradient-to-r from-violet-400 to-green-400 bg-clip-text text-transparent mb-2">🎉 Perfect!</h3>
               <p className="text-muted-foreground">
                 You completed the neon portrait in {moves} moves and {formatTime(timer)}!
               </p>
@@ -162,7 +161,7 @@ const PuzzleGame = () => {
 
         <div className="max-w-md mx-auto">
           {tiles.length > 0 && (
-            <div className="grid grid-cols-3 gap-2 p-4 bg-black/50 rounded-lg border-2 border-primary/30 glow-orange">
+            <div className="grid grid-cols-3 gap-2 p-4 bg-black/50 rounded-lg border-2 border-violet-400/30 shadow-lg shadow-violet-500/20">
               {tiles.map((tile, index) => (
                 <div
                   key={tile.id}
@@ -170,10 +169,10 @@ const PuzzleGame = () => {
                   className={`
                     aspect-square rounded-lg cursor-pointer transition-all duration-200 relative overflow-hidden
                     ${tile.isEmpty 
-                      ? 'bg-transparent border-2 border-dashed border-primary/30' 
-                      : 'hover:scale-105 glow-orange-strong border-2 border-primary/50'
+                      ? 'bg-transparent border-2 border-dashed border-violet-400/30' 
+                      : 'hover:scale-105 border-2 border-violet-400/50 shadow-lg shadow-violet-500/30'
                     }
-                    ${isPlaying && !tile.isEmpty ? 'hover:shadow-lg' : ''}
+                    ${isPlaying && !tile.isEmpty ? 'hover:shadow-lg hover:shadow-green-400/40' : ''}
                   `}
                   style={{
                     backgroundImage: tile.isEmpty ? 'none' : `url(/lovable-uploads/myface.png)`,
@@ -184,7 +183,7 @@ const PuzzleGame = () => {
                   }}
                 >
                   {!tile.isEmpty && (
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 mix-blend-overlay"></div>
+                    <div className="absolute inset-0 bg-gradient-to-br from-violet-500/20 to-green-400/20 mix-blend-overlay"></div>
                   )}
                 </div>
               ))}
