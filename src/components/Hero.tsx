@@ -29,7 +29,7 @@ const Hero = () => {
     <section className="pt-28 pb-20 md:pt-36 md:pb-32 relative overflow-hidden">
       <div className="absolute inset-0 bg-grid-animated -z-10"></div>
       <div className="absolute top-20 left-10 w-64 h-64 bg-violet-500/20 rounded-full blur-3xl floating"></div>
-      <div className="absolute bottom-20 right-10 w-96 h-96 bg-green-400/20 rounded-full blur-3xl floating" style={{ animationDelay: '2s' }}></div>
+      <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-400/20 rounded-full blur-3xl floating" style={{ animationDelay: '2s' }}></div>
       
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center">
@@ -45,7 +45,7 @@ const Hero = () => {
             Crafting beautiful, responsive web experiences and leveraging GoHighLevel to help businesses grow.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button asChild size="lg" className="px-8 glow-orange-strong hover:glow-orange transition-all duration-300 bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700">
+            <Button asChild size="lg" className="px-8 glow-orange-strong hover:glow-orange transition-all duration-300 bg-gradient-to-r from-violet-500 to-blue-600 hover:from-violet-600 hover:to-blue-700">
               <a href="#projects">View My Work</a>
             </Button>
             <Button asChild size="lg" variant="outline" className="px-8 border-glow hover:bg-violet-500/10 transition-all duration-300 border-violet-400 text-violet-400">
