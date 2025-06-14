@@ -1,3 +1,4 @@
+
 import { useEffect, useRef, useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Puzzle } from "lucide-react";
@@ -16,6 +17,7 @@ const PuzzleGame = () => {
   const [isWon, setIsWon] = useState(false);
   const [timer, setTimer] = useState(0);
   const timerRef = useRef<NodeJS.Timeout>();
+  const sectionRef = useRef<HTMLElement>(null);
 
   const initializePuzzle = () => {
     const initialTiles: Tile[] = [];
@@ -104,6 +106,28 @@ const PuzzleGame = () => {
     setTimer(0);
   };
 
+  // Auto-start puzzle when section comes into view
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !isPlaying && !isWon && tiles.length === 0) {
+            startGame();
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [isPlaying, isWon, tiles.length]);
+
   useEffect(() => {
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
@@ -117,7 +141,7 @@ const PuzzleGame = () => {
   };
 
   return (
-    <section className="py-16 bg-gradient-to-b from-background via-secondary/20 to-secondary relative overflow-hidden">
+    <section ref={sectionRef} className="py-16 bg-gradient-to-b from-background via-secondary/20 to-secondary relative overflow-hidden">
       <div className="absolute inset-0 bg-grid opacity-30"></div>
       
       <div className="container mx-auto px-4 relative z-10">
@@ -131,9 +155,13 @@ const PuzzleGame = () => {
           </p>
           
           <div className="flex items-center justify-center gap-4 mb-6">
-            {!isPlaying && !isWon ? (
+            {!isPlaying && !isWon && tiles.length === 0 ? (
+              <div className="text-muted-foreground animate-pulse">
+                Loading puzzle...
+              </div>
+            ) : !isPlaying && !isWon ? (
               <Button onClick={startGame} className="bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 shadow-lg shadow-violet-500/30">
-                Start Puzzle
+                Start New Game
               </Button>
             ) : (
               <Button onClick={stopGame} variant="outline" className="border-violet-400 text-violet-400 hover:bg-violet-400/10">
