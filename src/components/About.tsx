@@ -3,10 +3,30 @@ import { Code, Briefcase, Users } from 'lucide-react';
 import { Card, CardContent } from "@/components/ui/card";
 
 const About = () => {
-  const skills = [
-    "React", "TypeScript", "JavaScript", "HTML/CSS", 
-    "Tailwind CSS", "Node.js", "GoHighLevel", "API Integration",
-    "Responsive Design", "UI/UX Design", "Next.js", "Git"
+  const frontendTech = [
+    { name: "HTML", icon: "🌐" },
+    { name: "CSS", icon: "🎨" },
+    { name: "JavaScript", icon: "⚡" },
+    { name: "React", icon: "⚛️" },
+    { name: "Vue", icon: "💚" },
+    { name: "Tailwind", icon: "🌊" },
+    { name: "Bootstrap", icon: "🅱️" },
+    { name: "Next.js", icon: "▲" }
+  ];
+
+  const backendTech = [
+    { name: "Node.js", icon: "🟢" },
+    { name: "Java", icon: "☕" },
+    { name: "Python", icon: "🐍" },
+    { name: "SQL", icon: "🗄️" },
+    { name: "MongoDB", icon: "🍃" }
+  ];
+
+  const tools = [
+    { name: "Git", icon: "📝" },
+    { name: "GitHub", icon: "🐙" },
+    { name: "VS Code", icon: "💙" },
+    { name: "Figma", icon: "🎨" }
   ];
 
   return (
@@ -77,14 +97,61 @@ const About = () => {
           </div>
         </div>
 
-        <div className="mt-16">
-          <h3 className="text-2xl font-bold mb-6 text-center">Skills & Technologies</h3>
-          <div className="flex flex-wrap justify-center gap-3">
-            {skills.map((skill) => (
-              <Card key={skill} className="bg-accent border-none">
-                <CardContent className="p-3 text-sm font-medium">{skill}</CardContent>
-              </Card>
-            ))}
+        <div className="mt-20">
+          <div className="text-center mb-12">
+            <h3 className="text-3xl md:text-4xl font-bold mb-4">Tools & Technologies</h3>
+            <p className="text-lg text-muted-foreground">The tools I work with daily</p>
+          </div>
+
+          <div className="space-y-12">
+            {/* Frontend */}
+            <div>
+              <h4 className="text-2xl font-bold text-center mb-8">Frontend</h4>
+              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-6">
+                {frontendTech.map((tech) => (
+                  <div key={tech.name} className="flex flex-col items-center group">
+                    <div className="w-16 h-16 bg-accent rounded-xl flex items-center justify-center mb-3 group-hover:bg-primary transition-colors duration-300">
+                      <span className="text-2xl">{tech.icon}</span>
+                    </div>
+                    <span className="text-sm font-medium text-center">{tech.name}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Backend */}
+            <div>
+              <h4 className="text-2xl font-bold text-center mb-8">Backend</h4>
+              <div className="flex justify-center">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 max-w-2xl">
+                  {backendTech.map((tech) => (
+                    <div key={tech.name} className="flex flex-col items-center group">
+                      <div className="w-16 h-16 bg-accent rounded-xl flex items-center justify-center mb-3 group-hover:bg-primary transition-colors duration-300">
+                        <span className="text-2xl">{tech.icon}</span>
+                      </div>
+                      <span className="text-sm font-medium text-center">{tech.name}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Tools */}
+            <div>
+              <h4 className="text-2xl font-bold text-center mb-8">Tools</h4>
+              <div className="flex justify-center">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-xl">
+                  {tools.map((tool) => (
+                    <div key={tool.name} className="flex flex-col items-center group">
+                      <div className="w-16 h-16 bg-accent rounded-xl flex items-center justify-center mb-3 group-hover:bg-primary transition-colors duration-300">
+                        <span className="text-2xl">{tool.icon}</span>
+                      </div>
+                      <span className="text-sm font-medium text-center">{tool.name}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
