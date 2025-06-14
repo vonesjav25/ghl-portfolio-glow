@@ -1,32 +1,42 @@
-
-import { Code, Briefcase, Users, Globe, Palette, Zap, Atom, Heart, Waves, Hash, Triangle, Server, Coffee, Database, Leaf, FileText, Github, Code2, Figma } from 'lucide-react';
+import { Code, Briefcase, Users, Globe, Palette, Zap, Atom, Heart, Waves, Hash, Triangle, Server, Coffee, Database, Leaf, FileText, Github, Code2, Figma, Settings, Terminal, Layers } from 'lucide-react';
 import { Card, CardContent } from "@/components/ui/card";
 
 const About = () => {
   const frontendTech = [
+    { name: "Angular", icon: Atom },
+    { name: "React", icon: Atom },
+    { name: "PreactJs", icon: Heart },
     { name: "HTML", icon: Globe },
     { name: "CSS", icon: Palette },
     { name: "JavaScript", icon: Zap },
-    { name: "React", icon: Atom },
-    { name: "Vue", icon: Heart },
-    { name: "Tailwind", icon: Waves },
+    { name: "TypeScript", icon: Code },
     { name: "Bootstrap", icon: Hash },
-    { name: "Next.js", icon: Triangle }
+    { name: "SASS", icon: Waves },
+    { name: "jQuery", icon: Code2 },
+    { name: "Ionic", icon: Triangle },
+    { name: "PixiJS", icon: Layers }
   ];
 
   const backendTech = [
     { name: "Node.js", icon: Server },
-    { name: "Java", icon: Coffee },
-    { name: "Python", icon: Code },
-    { name: "SQL", icon: Database },
-    { name: "MongoDB", icon: Leaf }
+    { name: "NestJS", icon: Server },
+    { name: "ExpressJS", icon: Server },
+    { name: "PHP", icon: Code },
+    { name: "MySQL", icon: Database },
+    { name: "PostgreSQL", icon: Database },
+    { name: "SQLite", icon: Database },
+    { name: "Oracle", icon: Database }
   ];
 
   const tools = [
-    { name: "Git", icon: FileText },
-    { name: "GitHub", icon: Github },
-    { name: "VS Code", icon: Code2 },
-    { name: "Figma", icon: Figma }
+    { name: "Git", icon: Github },
+    { name: "CGI", icon: Terminal },
+    { name: "Bash", icon: Terminal },
+    { name: "Unix", icon: Terminal },
+    { name: "Awk", icon: Terminal },
+    { name: "CodeIgniter", icon: Settings },
+    { name: "WordPress", icon: Globe },
+    { name: "WinJS", icon: Code2 }
   ];
 
   return (
@@ -103,17 +113,17 @@ const About = () => {
             <p className="text-muted-foreground">The tools I work with daily</p>
           </div>
 
-          <div className="space-y-10">
+          <div className="space-y-8">
             {/* Frontend */}
             <div>
-              <h4 className="text-lg font-semibold text-center mb-6 text-muted-foreground">Frontend</h4>
-              <div className="grid grid-cols-4 md:grid-cols-8 gap-4 max-w-4xl mx-auto">
+              <h4 className="text-lg font-semibold text-center mb-4 text-muted-foreground">Frontend</h4>
+              <div className="grid grid-cols-4 md:grid-cols-6 gap-3 max-w-4xl mx-auto">
                 {frontendTech.map((tech) => {
                   const IconComponent = tech.icon;
                   return (
                     <div key={tech.name} className="flex flex-col items-center group">
-                      <div className="w-14 h-14 rounded-lg flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-200 border border-border/50">
-                        <IconComponent className="w-6 h-6 text-muted-foreground" />
+                      <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-2 group-hover:scale-110 transition-transform duration-200 border border-border/30">
+                        <IconComponent className="w-5 h-5 text-muted-foreground" />
                       </div>
                       <span className="text-xs font-medium text-center text-muted-foreground">{tech.name}</span>
                     </div>
@@ -124,15 +134,15 @@ const About = () => {
 
             {/* Backend */}
             <div>
-              <h4 className="text-lg font-semibold text-center mb-6 text-muted-foreground">Backend</h4>
+              <h4 className="text-lg font-semibold text-center mb-4 text-muted-foreground">Backend</h4>
               <div className="flex justify-center">
-                <div className="grid grid-cols-3 md:grid-cols-5 gap-4 max-w-lg">
+                <div className="grid grid-cols-4 md:grid-cols-4 gap-3 max-w-lg">
                   {backendTech.map((tech) => {
                     const IconComponent = tech.icon;
                     return (
                       <div key={tech.name} className="flex flex-col items-center group">
-                        <div className="w-14 h-14 rounded-lg flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-200 border border-border/50">
-                          <IconComponent className="w-6 h-6 text-muted-foreground" />
+                        <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-2 group-hover:scale-110 transition-transform duration-200 border border-border/30">
+                          <IconComponent className="w-5 h-5 text-muted-foreground" />
                         </div>
                         <span className="text-xs font-medium text-center text-muted-foreground">{tech.name}</span>
                       </div>
@@ -144,15 +154,15 @@ const About = () => {
 
             {/* Tools */}
             <div>
-              <h4 className="text-lg font-semibold text-center mb-6 text-muted-foreground">Tools</h4>
+              <h4 className="text-lg font-semibold text-center mb-4 text-muted-foreground">Tools</h4>
               <div className="flex justify-center">
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-sm">
+                <div className="grid grid-cols-4 md:grid-cols-4 gap-3 max-w-lg">
                   {tools.map((tool) => {
                     const IconComponent = tool.icon;
                     return (
                       <div key={tool.name} className="flex flex-col items-center group">
-                        <div className="w-14 h-14 rounded-lg flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-200 border border-border/50">
-                          <IconComponent className="w-6 h-6 text-muted-foreground" />
+                        <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-2 group-hover:scale-110 transition-transform duration-200 border border-border/30">
+                          <IconComponent className="w-5 h-5 text-muted-foreground" />
                         </div>
                         <span className="text-xs font-medium text-center text-muted-foreground">{tool.name}</span>
                       </div>
