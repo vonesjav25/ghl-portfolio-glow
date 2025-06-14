@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import { Button } from "@/components/ui/button";
 
@@ -7,8 +8,10 @@ const Hero = () => {
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   
   const texts = [
-    "Frontend Developer & GHL Expert",
-    "Fullstack Developer"
+    "Frontend Developer",
+    "Fullstack Developer",
+    "Mobile App Developer",
+    "Software Developer"
   ];
   
   const currentText = texts[currentTextIndex];
