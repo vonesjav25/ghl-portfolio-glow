@@ -10,7 +10,9 @@ const Hero = () => {
     "Frontend Developer",
     "Fullstack Developer",
     "Mobile App Developer",
-    "Software Developer"
+    "Software Developer",
+    "GHL Specialist",
+    "Web Designer"
   ];
   
   const currentText = texts[currentTextIndex];
