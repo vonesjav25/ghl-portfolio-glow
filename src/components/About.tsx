@@ -1,4 +1,3 @@
-
 import { Code, Briefcase, Users, Globe, Palette, Zap, Atom, Heart, Waves, Hash, Triangle, Server, Coffee, Database, Leaf, FileText, Github, Code2, Figma, Settings, Terminal, Layers } from 'lucide-react';
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -51,21 +50,18 @@ const About = () => {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
             <p className="text-lg mb-6 text-muted-foreground leading-relaxed">
-              Hello! I'm a seasoned full-stack developer with over 12 years of experience in building 
-              robust web applications and delivering enterprise-grade solutions. Currently working as an 
-              App Developer at Accenture, I specialize in both frontend and backend technologies.
+              I'm a seasoned full-stack developer with over 12 years of experience building 
+              robust web applications and enterprise-grade solutions. Currently working as an 
+              App Developer at Accenture, I specialize in modern JavaScript frameworks and backend systems.
             </p>
             <p className="text-lg mb-6 text-muted-foreground leading-relaxed">
-              Throughout my career, I've worked across diverse industries from IT consulting to travel 
-              and mobile applications. My expertise spans from modern JavaScript frameworks like Angular 
-              and React to backend systems using Node.js, PHP, and various databases including Oracle, 
-              MySQL, and PostgreSQL.
+              My expertise spans from Angular and React to Node.js, PHP, and databases like Oracle 
+              and PostgreSQL. I've worked across diverse industries including IT consulting, travel, 
+              and mobile applications.
             </p>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              I thrive on solving complex technical challenges, collaborating directly with clients 
-              to understand their needs, and architecting scalable solutions. My experience includes 
-              everything from creating reusable component libraries to building mobile applications 
-              and optimizing web performance.
+              I thrive on solving complex technical challenges, collaborating with clients to understand 
+              their needs, and architecting scalable solutions that drive business value.
             </p>
           </div>
 
@@ -80,8 +76,8 @@ const About = () => {
                 <div>
                   <h4 className="text-xl font-semibold mb-2">Full-Stack Development</h4>
                   <p className="text-muted-foreground">
-                    Building end-to-end solutions with modern frameworks, APIs, and database systems 
-                    for scalable web applications.
+                    Building end-to-end solutions with Angular, React, Node.js, and PHP for 
+                    scalable enterprise applications.
                   </p>
                 </div>
               </div>
@@ -91,10 +87,10 @@ const About = () => {
                   <Briefcase className="h-6 w-6 text-primary-foreground" />
                 </div>
                 <div>
-                  <h4 className="text-xl font-semibold mb-2">Enterprise Consulting</h4>
+                  <h4 className="text-xl font-semibold mb-2">Enterprise Solutions</h4>
                   <p className="text-muted-foreground">
-                    Working directly with clients at Accenture and Atos to gather requirements, 
-                    provide technical solutions, and ensure business alignment.
+                    Working with enterprise clients at Accenture and Atos to deliver custom 
+                    solutions and technical consulting services.
                   </p>
                 </div>
               </div>
@@ -104,10 +100,10 @@ const About = () => {
                   <Users className="h-6 w-6 text-primary-foreground" />
                 </div>
                 <div>
-                  <h4 className="text-xl font-semibold mb-2">System Architecture</h4>
+                  <h4 className="text-xl font-semibold mb-2">Technical Leadership</h4>
                   <p className="text-muted-foreground">
-                    Designing secure, maintainable software architectures and creating technical 
-                    documentation for complex systems.
+                    Creating reusable component libraries, architecting systems, and mentoring 
+                    teams on best practices and modern development workflows.
                   </p>
                 </div>
               </div>
