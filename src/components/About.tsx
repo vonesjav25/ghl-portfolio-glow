@@ -1,32 +1,32 @@
 
-import { Code, Briefcase, Users } from 'lucide-react';
+import { Code, Briefcase, Users, Globe, Palette, Zap, Atom, Heart, Waves, Hash, Triangle, Server, Coffee, Database, Leaf, FileText, Github, Code2, Figma } from 'lucide-react';
 import { Card, CardContent } from "@/components/ui/card";
 
 const About = () => {
   const frontendTech = [
-    { name: "HTML", icon: "🌐" },
-    { name: "CSS", icon: "🎨" },
-    { name: "JavaScript", icon: "⚡" },
-    { name: "React", icon: "⚛️" },
-    { name: "Vue", icon: "💚" },
-    { name: "Tailwind", icon: "🌊" },
-    { name: "Bootstrap", icon: "🅱️" },
-    { name: "Next.js", icon: "▲" }
+    { name: "HTML", icon: Globe },
+    { name: "CSS", icon: Palette },
+    { name: "JavaScript", icon: Zap },
+    { name: "React", icon: Atom },
+    { name: "Vue", icon: Heart },
+    { name: "Tailwind", icon: Waves },
+    { name: "Bootstrap", icon: Hash },
+    { name: "Next.js", icon: Triangle }
   ];
 
   const backendTech = [
-    { name: "Node.js", icon: "🟢" },
-    { name: "Java", icon: "☕" },
-    { name: "Python", icon: "🐍" },
-    { name: "SQL", icon: "🗄️" },
-    { name: "MongoDB", icon: "🍃" }
+    { name: "Node.js", icon: Server },
+    { name: "Java", icon: Coffee },
+    { name: "Python", icon: Code },
+    { name: "SQL", icon: Database },
+    { name: "MongoDB", icon: Leaf }
   ];
 
   const tools = [
-    { name: "Git", icon: "📝" },
-    { name: "GitHub", icon: "🐙" },
-    { name: "VS Code", icon: "💙" },
-    { name: "Figma", icon: "🎨" }
+    { name: "Git", icon: FileText },
+    { name: "GitHub", icon: Github },
+    { name: "VS Code", icon: Code2 },
+    { name: "Figma", icon: Figma }
   ];
 
   return (
@@ -97,58 +97,67 @@ const About = () => {
           </div>
         </div>
 
-        <div className="mt-16">
-          <div className="text-center mb-8">
+        <div className="mt-20">
+          <div className="text-center mb-10">
             <h3 className="text-2xl font-bold mb-2">Tools & Technologies</h3>
             <p className="text-muted-foreground">The tools I work with daily</p>
           </div>
 
-          <div className="space-y-8">
+          <div className="space-y-10">
             {/* Frontend */}
             <div>
-              <h4 className="text-lg font-semibold text-center mb-4 text-muted-foreground">Frontend</h4>
-              <div className="grid grid-cols-4 md:grid-cols-8 gap-3 max-w-4xl mx-auto">
-                {frontendTech.map((tech) => (
-                  <div key={tech.name} className="flex flex-col items-center group">
-                    <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-2 group-hover:scale-110 transition-transform duration-200">
-                      <span className="text-xl">{tech.icon}</span>
+              <h4 className="text-lg font-semibold text-center mb-6 text-muted-foreground">Frontend</h4>
+              <div className="grid grid-cols-4 md:grid-cols-8 gap-4 max-w-4xl mx-auto">
+                {frontendTech.map((tech) => {
+                  const IconComponent = tech.icon;
+                  return (
+                    <div key={tech.name} className="flex flex-col items-center group">
+                      <div className="w-14 h-14 rounded-lg flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-200 border border-border/50">
+                        <IconComponent className="w-6 h-6 text-muted-foreground" />
+                      </div>
+                      <span className="text-xs font-medium text-center text-muted-foreground">{tech.name}</span>
                     </div>
-                    <span className="text-xs font-medium text-center text-muted-foreground">{tech.name}</span>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
 
             {/* Backend */}
             <div>
-              <h4 className="text-lg font-semibold text-center mb-4 text-muted-foreground">Backend</h4>
+              <h4 className="text-lg font-semibold text-center mb-6 text-muted-foreground">Backend</h4>
               <div className="flex justify-center">
-                <div className="grid grid-cols-3 md:grid-cols-5 gap-3 max-w-lg">
-                  {backendTech.map((tech) => (
-                    <div key={tech.name} className="flex flex-col items-center group">
-                      <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-2 group-hover:scale-110 transition-transform duration-200">
-                        <span className="text-xl">{tech.icon}</span>
+                <div className="grid grid-cols-3 md:grid-cols-5 gap-4 max-w-lg">
+                  {backendTech.map((tech) => {
+                    const IconComponent = tech.icon;
+                    return (
+                      <div key={tech.name} className="flex flex-col items-center group">
+                        <div className="w-14 h-14 rounded-lg flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-200 border border-border/50">
+                          <IconComponent className="w-6 h-6 text-muted-foreground" />
+                        </div>
+                        <span className="text-xs font-medium text-center text-muted-foreground">{tech.name}</span>
                       </div>
-                      <span className="text-xs font-medium text-center text-muted-foreground">{tech.name}</span>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
             </div>
 
             {/* Tools */}
             <div>
-              <h4 className="text-lg font-semibold text-center mb-4 text-muted-foreground">Tools</h4>
+              <h4 className="text-lg font-semibold text-center mb-6 text-muted-foreground">Tools</h4>
               <div className="flex justify-center">
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-sm">
-                  {tools.map((tool) => (
-                    <div key={tool.name} className="flex flex-col items-center group">
-                      <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-2 group-hover:scale-110 transition-transform duration-200">
-                        <span className="text-xl">{tool.icon}</span>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-sm">
+                  {tools.map((tool) => {
+                    const IconComponent = tool.icon;
+                    return (
+                      <div key={tool.name} className="flex flex-col items-center group">
+                        <div className="w-14 h-14 rounded-lg flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-200 border border-border/50">
+                          <IconComponent className="w-6 h-6 text-muted-foreground" />
+                        </div>
+                        <span className="text-xs font-medium text-center text-muted-foreground">{tool.name}</span>
                       </div>
-                      <span className="text-xs font-medium text-center text-muted-foreground">{tool.name}</span>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
             </div>
