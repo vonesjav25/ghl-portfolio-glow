@@ -124,10 +124,10 @@ const PuzzleGame = () => {
         <div className="text-center mb-8">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-violet-400 via-purple-500 to-green-400 bg-clip-text text-transparent flex items-center justify-center gap-3">
             <Puzzle className="w-8 h-8 text-violet-400" />
-            Neon Portrait Puzzle
+            Pixel Me Back
           </h2>
           <p className="text-muted-foreground mb-6">
-            Arrange the image pieces to complete the neon portrait!
+            Arrange the image pieces to complete my portrait!
           </p>
           
           <div className="flex items-center justify-center gap-4 mb-6">
