@@ -1,17 +1,23 @@
-
 import { useEffect, useState } from 'react';
 import { Button } from "@/components/ui/button";
 
 const Hero = () => {
   const [typedText, setTypedText] = useState("");
   const [isTyping, setIsTyping] = useState(true);
-  const fullText = "Frontend Developer & GHL Expert";
+  const [currentTextIndex, setCurrentTextIndex] = useState(0);
+  
+  const texts = [
+    "Frontend Developer & GHL Expert",
+    "Fullstack Developer"
+  ];
+  
+  const currentText = texts[currentTextIndex];
 
   useEffect(() => {
     if (isTyping) {
-      if (typedText.length < fullText.length) {
+      if (typedText.length < currentText.length) {
         const timeout = setTimeout(() => {
-          setTypedText(fullText.slice(0, typedText.length + 1));
+          setTypedText(currentText.slice(0, typedText.length + 1));
         }, 100);
         return () => clearTimeout(timeout);
       } else {
@@ -19,11 +25,12 @@ const Hero = () => {
         const timeout = setTimeout(() => {
           setIsTyping(true);
           setTypedText("");
+          setCurrentTextIndex((prev) => (prev + 1) % texts.length);
         }, 3000);
         return () => clearTimeout(timeout);
       }
     }
-  }, [typedText, isTyping]);
+  }, [typedText, isTyping, currentText]);
 
   return (
     <section className="pt-28 pb-20 md:pt-36 md:pb-32 relative overflow-hidden">
