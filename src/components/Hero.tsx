@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import { Button } from "@/components/ui/button";
 
@@ -46,6 +47,13 @@ const Hero = () => {
     }
   }, [typedText, isTyping, currentText, texts.length]);
 
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="pt-28 pb-20 md:pt-36 md:pb-32 relative overflow-hidden">
       <div className="absolute inset-0 bg-grid-animated -z-10"></div>
@@ -66,11 +74,20 @@ const Hero = () => {
             Crafting beautiful, responsive web experiences and leveraging GoHighLevel to help businesses grow.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button asChild size="lg" className="px-8 glow-orange-strong hover:glow-orange transition-all duration-300 bg-gradient-to-r from-violet-500 to-blue-600 hover:from-violet-600 hover:to-blue-700">
-              <a href="#projects">View My Work</a>
+            <Button 
+              size="lg" 
+              className="px-8 glow-orange-strong hover:glow-orange transition-all duration-300 bg-gradient-to-r from-violet-500 to-blue-600 hover:from-violet-600 hover:to-blue-700"
+              onClick={() => scrollToSection('projects')}
+            >
+              View My Work
             </Button>
-            <Button asChild size="lg" variant="outline" className="px-8 border-glow hover:bg-violet-500/10 transition-all duration-300 border-violet-400 text-violet-400">
-              <a href="#contact">Get In Touch</a>
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="px-8 border-glow hover:bg-violet-500/10 transition-all duration-300 border-violet-400 text-violet-400"
+              onClick={() => scrollToSection('contact')}
+            >
+              Get In Touch
             </Button>
           </div>
         </div>
