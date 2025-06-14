@@ -53,13 +53,13 @@ const FloatingElements = () => {
   }, []);
 
   return (
-    <div className="fixed inset-0 pointer-events-none overflow-hidden -z-10">
+    <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
       {elements.map((element) => {
         const { Icon } = element;
         return (
           <div
             key={element.id}
-            className="absolute opacity-10 text-violet-400"
+            className="absolute opacity-20 text-violet-400"
             style={{
               left: `${element.x}%`,
               top: `${element.y}%`,
@@ -73,14 +73,20 @@ const FloatingElements = () => {
       })}
       
       {/* Additional floating code snippets */}
-      <div className="absolute top-1/4 left-1/4 opacity-5 text-blue-400 font-mono text-xs animate-float-slow">
+      <div className="absolute top-1/4 left-1/4 opacity-15 text-blue-400 font-mono text-sm animate-float-slow">
         {'<div className="hero">'}
       </div>
-      <div className="absolute top-3/4 right-1/4 opacity-5 text-violet-400 font-mono text-xs animate-float-slow" style={{ animationDelay: '2s' }}>
+      <div className="absolute top-3/4 right-1/4 opacity-15 text-violet-400 font-mono text-sm animate-float-slow" style={{ animationDelay: '2s' }}>
         {'const portfolio = () => {'}
       </div>
-      <div className="absolute top-1/2 left-1/6 opacity-5 text-blue-400 font-mono text-xs animate-float-slow" style={{ animationDelay: '4s' }}>
+      <div className="absolute top-1/2 left-1/6 opacity-15 text-blue-400 font-mono text-sm animate-float-slow" style={{ animationDelay: '4s' }}>
         {'function() { return <App />; }'}
+      </div>
+      <div className="absolute top-1/3 right-1/3 opacity-15 text-violet-500 font-mono text-sm animate-float-slow" style={{ animationDelay: '6s' }}>
+        {'return <Component />;'}
+      </div>
+      <div className="absolute bottom-1/4 left-1/3 opacity-15 text-blue-500 font-mono text-sm animate-float-slow" style={{ animationDelay: '1s' }}>
+        {'.container { display: flex; }'}
       </div>
     </div>
   );
