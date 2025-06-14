@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { Button } from "@/components/ui/button";
 
@@ -24,16 +23,26 @@ const Hero = () => {
         }, 100);
         return () => clearTimeout(timeout);
       } else {
-        setIsTyping(false);
+        // Text is fully typed, wait then start erasing
         const timeout = setTimeout(() => {
-          setIsTyping(true);
-          setTypedText("");
-          setCurrentTextIndex((prev) => (prev + 1) % texts.length);
-        }, 3000);
+          setIsTyping(false);
+        }, 2000);
         return () => clearTimeout(timeout);
       }
+    } else {
+      // Erasing phase
+      if (typedText.length > 0) {
+        const timeout = setTimeout(() => {
+          setTypedText(typedText.slice(0, -1));
+        }, 50);
+        return () => clearTimeout(timeout);
+      } else {
+        // Text is fully erased, move to next text
+        setCurrentTextIndex((prev) => (prev + 1) % texts.length);
+        setIsTyping(true);
+      }
     }
-  }, [typedText, isTyping, currentText]);
+  }, [typedText, isTyping, currentText, texts.length]);
 
   return (
     <section className="pt-28 pb-20 md:pt-36 md:pb-32 relative overflow-hidden">
@@ -48,7 +57,7 @@ const Hero = () => {
           </h1>
           <div className="h-8 md:h-12 mb-8">
             <h2 className="text-xl md:text-2xl lg:text-3xl font-mono text-gradient-orange">
-              {typedText}<span className={`inline-block w-1 h-5 md:h-6 bg-violet-400 ml-1 glow-orange ${isTyping ? 'animate-pulse' : 'opacity-0'}`}></span>
+              {typedText}<span className={`inline-block w-1 h-5 md:h-6 bg-violet-400 ml-1 glow-orange ${isTyping || typedText.length > 0 ? 'animate-pulse' : 'opacity-0'}`}></span>
             </h2>
           </div>
           <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
