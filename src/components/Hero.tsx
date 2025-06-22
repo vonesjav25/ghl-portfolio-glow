@@ -1,4 +1,5 @@
 
+
 import { useEffect, useState } from 'react';
 import { Button } from "@/components/ui/button";
 
@@ -71,7 +72,7 @@ const Hero = () => {
             </h2>
           </div>
           <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Crafting beautiful, responsive web experiences and leveraging GoHighLevel to help businesses grow.
+            Crafting beautiful, responsive web experiences as a seasoned front-end developer and versatile full-stack developer, driving impactful digital solutions for growing businesses.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button 
@@ -99,3 +100,4 @@ const Hero = () => {
 };
 
 export default Hero;
+
