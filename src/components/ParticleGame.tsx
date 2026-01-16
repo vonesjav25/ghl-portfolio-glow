@@ -164,7 +164,7 @@ const PuzzleGame = () => {
                 Start New Game
               </Button>
             ) : (
-              <Button onClick={stopGame} variant="outline" className="border-violet-400 text-violet-400 hover:bg-violet-400/10">
+              <Button onClick={startGame} variant="outline" className="border-violet-400 text-violet-400 hover:bg-violet-400/10">
                 Reset
               </Button>
             )}
@@ -189,33 +189,51 @@ const PuzzleGame = () => {
 
         <div className="max-w-md mx-auto">
           {tiles.length > 0 && (
-            <div className="grid grid-cols-3 gap-2 p-4 bg-black/50 rounded-lg border-2 border-violet-400/30 shadow-lg shadow-violet-500/20">
-              {tiles.map((tile, index) => (
-                <div
-                  key={tile.id}
-                  onClick={() => moveTile(index)}
-                  className={`
-                    aspect-square rounded-lg cursor-pointer transition-all duration-200 relative overflow-hidden
-                    ${tile.isEmpty 
-                      ? 'bg-transparent border-2 border-dashed border-violet-400/30' 
-                      : 'hover:scale-105 border-2 border-violet-400/50 shadow-lg shadow-violet-500/30'
-                    }
-                    ${isPlaying && !tile.isEmpty ? 'hover:shadow-lg hover:shadow-green-400/40' : ''}
-                  `}
-                  style={{
-                    backgroundImage: tile.isEmpty ? 'none' : `url(/lovable-uploads/myface.png)`,
-                    backgroundSize: tile.isEmpty ? 'none' : '300% 300%',
-                    backgroundPosition: tile.backgroundPosition,
-                    backgroundRepeat: 'no-repeat',
-                    filter: tile.isEmpty ? 'none' : 'contrast(1.2) saturate(1.5) hue-rotate(15deg) drop-shadow(0 0 8px rgba(255, 117, 24, 0.6))'
-                  }}
-                >
-                  {!tile.isEmpty && (
-                    <div className="absolute inset-0 bg-gradient-to-br from-violet-500/20 to-green-400/20 mix-blend-overlay"></div>
-                  )}
+            <>
+              {isWon ? (
+                // Show complete image without gaps when won
+                <div className="relative rounded-lg overflow-hidden border-2 border-violet-400/50 shadow-2xl shadow-violet-500/40">
+                  <img 
+                    src="/lovable-uploads/myface.png" 
+                    alt="Completed portrait"
+                    className="w-full h-auto"
+                    style={{
+                      filter: 'contrast(1.2) saturate(1.5) hue-rotate(15deg) drop-shadow(0 0 8px rgba(255, 117, 24, 0.6))'
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-br from-violet-500/20 to-green-400/20 mix-blend-overlay"></div>
                 </div>
-              ))}
-            </div>
+              ) : (
+                // Show puzzle grid while playing
+                <div className="grid grid-cols-3 gap-2 p-4 bg-black/50 rounded-lg border-2 border-violet-400/30 shadow-lg shadow-violet-500/20">
+                  {tiles.map((tile, index) => (
+                    <div
+                      key={tile.id}
+                      onClick={() => moveTile(index)}
+                      className={`
+                        aspect-square rounded-lg cursor-pointer transition-all duration-200 relative overflow-hidden
+                        ${tile.isEmpty 
+                          ? 'bg-transparent border-2 border-dashed border-violet-400/30' 
+                          : 'hover:scale-105 border-2 border-violet-400/50 shadow-lg shadow-violet-500/30'
+                        }
+                        ${isPlaying && !tile.isEmpty ? 'hover:shadow-lg hover:shadow-green-400/40' : ''}
+                      `}
+                      style={{
+                        backgroundImage: tile.isEmpty ? 'none' : `url(/lovable-uploads/myface.png)`,
+                        backgroundSize: tile.isEmpty ? 'none' : '300% 300%',
+                        backgroundPosition: tile.backgroundPosition,
+                        backgroundRepeat: 'no-repeat',
+                        filter: tile.isEmpty ? 'none' : 'contrast(1.2) saturate(1.5) hue-rotate(15deg) drop-shadow(0 0 8px rgba(255, 117, 24, 0.6))'
+                      }}
+                    >
+                      {!tile.isEmpty && (
+                        <div className="absolute inset-0 bg-gradient-to-br from-violet-500/20 to-green-400/20 mix-blend-overlay"></div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </>
           )}
           
           {isPlaying && (
