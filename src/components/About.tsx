@@ -117,19 +117,34 @@ const About = () => {
             <p className="text-muted-foreground">The tools I work with daily</p>
           </div>
 
+          <style>
+            {`
+              @keyframes float {
+                0%, 100% { transform: translateY(0px); }
+                50% { transform: translateY(-8px); }
+              }
+              .tech-item {
+                animation: float 3s ease-in-out infinite;
+              }
+            `}
+          </style>
+
           <div className="space-y-8">
             {/* Frontend */}
             <div>
               <h4 className="text-lg font-semibold text-center mb-4 text-muted-foreground">Frontend</h4>
               <div className="grid grid-cols-4 md:grid-cols-6 gap-3 max-w-4xl mx-auto">
-                {frontendTech.map((tech) => {
+                {frontendTech.map((tech, index) => {
                   const IconComponent = tech.icon;
                   return (
                     <div key={tech.name} className="flex flex-col items-center group">
-                      <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-2 group-hover:scale-110 transition-transform duration-200 border border-border/30">
-                        <IconComponent className="w-5 h-5 text-muted-foreground" />
+                      <div 
+                        className="tech-item w-12 h-12 rounded-lg flex items-center justify-center mb-2 group-hover:scale-110 transition-all duration-300 border border-blue-500/20 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 group-hover:from-blue-500/20 group-hover:to-cyan-500/20 group-hover:border-blue-400/40 group-hover:shadow-lg group-hover:shadow-blue-500/20"
+                        style={{ animationDelay: `${index * 0.1}s` }}
+                      >
+                        <IconComponent className="w-5 h-5 text-blue-400 group-hover:text-blue-300 transition-colors duration-300" />
                       </div>
-                      <span className="text-xs font-medium text-center text-muted-foreground">{tech.name}</span>
+                      <span className="text-xs font-medium text-center text-muted-foreground group-hover:text-blue-400 transition-colors duration-300">{tech.name}</span>
                     </div>
                   );
                 })}
@@ -141,14 +156,17 @@ const About = () => {
               <h4 className="text-lg font-semibold text-center mb-4 text-muted-foreground">Backend</h4>
               <div className="flex justify-center">
                 <div className="grid grid-cols-4 md:grid-cols-4 gap-3 max-w-lg">
-                  {backendTech.map((tech) => {
+                  {backendTech.map((tech, index) => {
                     const IconComponent = tech.icon;
                     return (
                       <div key={tech.name} className="flex flex-col items-center group">
-                        <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-2 group-hover:scale-110 transition-transform duration-200 border border-border/30">
-                          <IconComponent className="w-5 h-5 text-muted-foreground" />
+                        <div 
+                          className="tech-item w-12 h-12 rounded-lg flex items-center justify-center mb-2 group-hover:scale-110 transition-all duration-300 border border-green-500/20 bg-gradient-to-br from-green-500/10 to-emerald-500/10 group-hover:from-green-500/20 group-hover:to-emerald-500/20 group-hover:border-green-400/40 group-hover:shadow-lg group-hover:shadow-green-500/20"
+                          style={{ animationDelay: `${index * 0.1}s` }}
+                        >
+                          <IconComponent className="w-5 h-5 text-green-400 group-hover:text-green-300 transition-colors duration-300" />
                         </div>
-                        <span className="text-xs font-medium text-center text-muted-foreground">{tech.name}</span>
+                        <span className="text-xs font-medium text-center text-muted-foreground group-hover:text-green-400 transition-colors duration-300">{tech.name}</span>
                       </div>
                     );
                   })}
@@ -161,14 +179,17 @@ const About = () => {
               <h4 className="text-lg font-semibold text-center mb-4 text-muted-foreground">Tools</h4>
               <div className="flex justify-center">
                 <div className="grid grid-cols-4 md:grid-cols-4 gap-3 max-w-lg">
-                  {tools.map((tool) => {
+                  {tools.map((tool, index) => {
                     const IconComponent = tool.icon;
                     return (
                       <div key={tool.name} className="flex flex-col items-center group">
-                        <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-2 group-hover:scale-110 transition-transform duration-200 border border-border/30">
-                          <IconComponent className="w-5 h-5 text-muted-foreground" />
+                        <div 
+                          className="tech-item w-12 h-12 rounded-lg flex items-center justify-center mb-2 group-hover:scale-110 transition-all duration-300 border border-purple-500/20 bg-gradient-to-br from-purple-500/10 to-pink-500/10 group-hover:from-purple-500/20 group-hover:to-pink-500/20 group-hover:border-purple-400/40 group-hover:shadow-lg group-hover:shadow-purple-500/20"
+                          style={{ animationDelay: `${index * 0.1}s` }}
+                        >
+                          <IconComponent className="w-5 h-5 text-purple-400 group-hover:text-purple-300 transition-colors duration-300" />
                         </div>
-                        <span className="text-xs font-medium text-center text-muted-foreground">{tool.name}</span>
+                        <span className="text-xs font-medium text-center text-muted-foreground group-hover:text-purple-400 transition-colors duration-300">{tool.name}</span>
                       </div>
                     );
                   })}
