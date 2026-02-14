@@ -68,13 +68,35 @@ const About = () => {
           <div>
             <h3 className="text-2xl font-bold mb-6">My Expertise</h3>
             
+            <style>
+              {`
+                @keyframes slideInRight {
+                  from {
+                    opacity: 0;
+                    transform: translateX(-20px);
+                  }
+                  to {
+                    opacity: 1;
+                    transform: translateX(0);
+                  }
+                }
+                .expertise-card {
+                  animation: slideInRight 0.6s ease-out forwards;
+                  opacity: 0;
+                }
+                .expertise-card:nth-child(1) { animation-delay: 0.1s; }
+                .expertise-card:nth-child(2) { animation-delay: 0.2s; }
+                .expertise-card:nth-child(3) { animation-delay: 0.3s; }
+              `}
+            </style>
+            
             <div className="space-y-6">
-              <div className="flex items-start gap-4">
-                <div className="bg-primary p-3 rounded-lg">
-                  <Code className="h-6 w-6 text-primary-foreground" />
+              <div className="expertise-card flex items-start gap-4 group hover:translate-x-2 transition-transform duration-300">
+                <div className="bg-gradient-to-br from-blue-500 to-cyan-500 p-3 rounded-lg group-hover:shadow-lg group-hover:shadow-blue-500/50 transition-all duration-300 group-hover:scale-110">
+                  <Code className="h-6 w-6 text-white" />
                 </div>
                 <div>
-                  <h4 className="text-xl font-semibold mb-2">Full-Stack Development</h4>
+                  <h4 className="text-xl font-semibold mb-2 group-hover:text-blue-400 transition-colors duration-300">Full-Stack Development</h4>
                   <p className="text-muted-foreground">
                     Building end-to-end solutions with Angular, React, Node.js, and PHP for 
                     scalable enterprise applications.
@@ -82,12 +104,12 @@ const About = () => {
                 </div>
               </div>
               
-              <div className="flex items-start gap-4">
-                <div className="bg-primary p-3 rounded-lg">
-                  <Briefcase className="h-6 w-6 text-primary-foreground" />
+              <div className="expertise-card flex items-start gap-4 group hover:translate-x-2 transition-transform duration-300">
+                <div className="bg-gradient-to-br from-green-500 to-emerald-500 p-3 rounded-lg group-hover:shadow-lg group-hover:shadow-green-500/50 transition-all duration-300 group-hover:scale-110">
+                  <Briefcase className="h-6 w-6 text-white" />
                 </div>
                 <div>
-                  <h4 className="text-xl font-semibold mb-2">Enterprise Solutions</h4>
+                  <h4 className="text-xl font-semibold mb-2 group-hover:text-green-400 transition-colors duration-300">Enterprise Solutions</h4>
                   <p className="text-muted-foreground">
                     Working with enterprise clients at Accenture and Atos to deliver custom 
                     solutions and technical consulting services.
@@ -95,12 +117,12 @@ const About = () => {
                 </div>
               </div>
               
-              <div className="flex items-start gap-4">
-                <div className="bg-primary p-3 rounded-lg">
-                  <Users className="h-6 w-6 text-primary-foreground" />
+              <div className="expertise-card flex items-start gap-4 group hover:translate-x-2 transition-transform duration-300">
+                <div className="bg-gradient-to-br from-purple-500 to-pink-500 p-3 rounded-lg group-hover:shadow-lg group-hover:shadow-purple-500/50 transition-all duration-300 group-hover:scale-110">
+                  <Users className="h-6 w-6 text-white" />
                 </div>
                 <div>
-                  <h4 className="text-xl font-semibold mb-2">Technical Leadership</h4>
+                  <h4 className="text-xl font-semibold mb-2 group-hover:text-purple-400 transition-colors duration-300">Technical Leadership</h4>
                   <p className="text-muted-foreground">
                     Creating reusable component libraries, architecting systems, and mentoring 
                     teams on best practices and modern development workflows.
