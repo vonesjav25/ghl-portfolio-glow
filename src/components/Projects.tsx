@@ -20,62 +20,40 @@ const Projects = () => {
   
   const projects: Project[] = [
     {
-      id: 1,
-      title: "E-commerce Dashboard",
-      description: "A responsive dashboard for e-commerce analytics with real-time data visualization using React, TypeScript, and Recharts.",
-      image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d",
-      tags: ["React", "TypeScript", "Tailwind CSS"],
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com",
+      id: 10,
+      title: "Pop Prism Tetris",
+      description: "A vibrant, browser-based Tetris game with colorful prismatic blocks and smooth gameplay mechanics built for the web.",
+      image: "/project-images/tetris.png",
+      tags: ["JavaScript", "Game", "Canvas", "Web App"],
+      liveUrl: "https://pop-prism-tetris-play.vercel.app/",
       category: "frontend"
     },
     {
-      id: 2,
-      title: "Property Listing Platform",
-      description: "A full-stack real estate platform with property listings, user authentication, and advanced filtering options.",
-      image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7",
-      tags: ["React", "Node.js", "Express", "MongoDB"],
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com",
-      category: "fullstack"
-    },
-    {
-      id: 3,
-      title: "GHL Marketing Automation",
-      description: "Custom GoHighLevel automation solution for a digital marketing agency, increasing lead conversion by 40%.",
-      image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
-      tags: ["GHL", "JavaScript", "API Integration"],
-      liveUrl: "https://example.com",
-      category: "ghl"
-    },
-    {
-      id: 4,
-      title: "Portfolio Website",
-      description: "Modern, responsive portfolio website built with React and Tailwind CSS featuring smooth animations.",
-      image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
-      tags: ["React", "Tailwind CSS", "Framer Motion"],
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com",
+      id: 8,
+      title: "AHA Innovations",
+      description: "Business website for AHA Innovations showcasing services, brand positioning, and a polished professional web presence.",
+      image: "/project-images/aha.png",
+      tags: ["React", "Business Website", "Branding", "UI/UX"],
+      liveUrl: "https://www.aha-innovations.com/",
       category: "frontend"
     },
     {
-      id: 5,
-      title: "GHL Client Portal",
-      description: "Custom client portal integrated with GoHighLevel to streamline client onboarding and communication.",
-      image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7",
-      tags: ["GHL", "JavaScript", "Webhooks"],
-      liveUrl: "https://example.com",
-      category: "ghl"
+      id: 7,
+      title: "SeePrompt",
+      description: "Prompt intelligence dashboard for organizing, filtering, and scoring reusable AI prompts with a polished dark UI.",
+      image: "/project-images/seeprompt.png",
+      tags: ["React", "TypeScript", "Dashboard", "AI"],
+      liveUrl: "https://seeprompt.vercel.app/",
+      category: "fullstack"
     },
     {
-      id: 6,
-      title: "Task Management App",
-      description: "Full-stack task management application with user authentication, task assignment, and real-time updates.",
-      image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d",
-      tags: ["React", "Node.js", "Socket.io", "MongoDB"],
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com",
-      category: "fullstack"
+      id: 9,
+      title: "Daily Verse",
+      description: "Inspirational daily scripture web app with serene visuals, rotating locations, and a clean reflective reading experience.",
+      image: "/project-images/daily-verse.png",
+      tags: ["React", "Vercel", "UI/UX", "Web App"],
+      liveUrl: "https://daily-verse-unfolded.vercel.app/",
+      category: "frontend"
     }
   ];
 
