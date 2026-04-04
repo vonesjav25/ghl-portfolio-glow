@@ -20,21 +20,21 @@ const Projects = () => {
   
   const projects: Project[] = [
     {
-      id: 10,
-      title: "Pop Prism Tetris",
-      description: "A vibrant, browser-based Tetris game with colorful prismatic blocks and smooth gameplay mechanics built for the web.",
-      image: "/project-images/tetris.png",
-      tags: ["JavaScript", "Game", "Canvas", "Web App"],
-      liveUrl: "https://pop-prism-tetris-play.vercel.app/",
-      category: "frontend"
-    },
-    {
       id: 8,
       title: "AHA Innovations",
       description: "Business website for AHA Innovations showcasing services, brand positioning, and a polished professional web presence.",
       image: "/project-images/aha.png",
       tags: ["React", "Business Website", "Branding", "UI/UX"],
       liveUrl: "https://www.aha-innovations.com/",
+      category: "frontend"
+    },
+    {
+      id: 12,
+      title: "Voyce.me",
+      description: "A modern web platform focused on sharing voices, stories, and updates through a clean and engaging user experience.",
+      image: "/project-images/voyceme.png",
+      tags: ["React", "Web Platform", "UI/UX", "Frontend"],
+      liveUrl: "https://www.voyce.me/",
       category: "frontend"
     },
     {
@@ -45,6 +45,69 @@ const Projects = () => {
       tags: ["React", "TypeScript", "Dashboard", "AI"],
       liveUrl: "https://seeprompt.vercel.app/",
       category: "fullstack"
+    },
+    {
+      id: 19,
+      title: "Sepoi-Sepoi",
+      description: "Website development project for Sepoi-Sepoi featuring a visual-first presentation and branded hospitality-style content.",
+      image: "/project-images/sepoi-sepoi.jpg",
+      tags: ["Website Development", "Hospitality", "UI/UX", "Frontend"],
+      liveUrl: "http://www.sepoi-sepoi.com/",
+      category: "frontend"
+    },
+    {
+      id: 18,
+      title: "Villa Saan Phuket",
+      description: "Luxury villa website built to highlight destination imagery, amenities, and an elegant booking-oriented experience.",
+      image: "/project-images/villasaan.jpg",
+      tags: ["Website Development", "Villa", "Branding", "Frontend"],
+      liveUrl: "http://www.villasaanphuket.com/",
+      category: "frontend"
+    },
+    {
+      id: 17,
+      title: "Amilla Beach Villa Residences",
+      description: "Property-focused web experience designed to showcase premium residences through rich visuals and clear information flow.",
+      image: "/project-images/amilla.jpg",
+      tags: ["Website Development", "Real Estate", "Resort", "Frontend"],
+      liveUrl: "http://www.amillabeachvillaresidences.com/",
+      category: "frontend"
+    },
+    {
+      id: 14,
+      title: "The Anandita",
+      description: "High-end property website featuring immersive imagery, concise content sections, and a premium presentation style.",
+      image: "/project-images/theanandita.jpg",
+      tags: ["Website Development", "Luxury", "Property", "Frontend"],
+      liveUrl: "http://www.theanandita.com/",
+      category: "frontend"
+    },
+    {
+      id: 13,
+      title: "Villa Lilibel",
+      description: "Destination website created to present villa offerings with warm visuals and a clean, accessible information layout.",
+      image: "/project-images/lilibel.jpg",
+      tags: ["Website Development", "Villa", "Travel", "Frontend"],
+      liveUrl: "http://villalilibel.com/",
+      category: "frontend"
+    },
+    {
+      id: 11,
+      title: "FabPlanet Feed",
+      description: "A dynamic feed experience for FabPlanet designed to surface content in a clear, fast, and visually polished layout.",
+      image: "/project-images/fabplanet.png",
+      tags: ["React", "Feed", "Content", "Frontend"],
+      liveUrl: "https://fabplanet.vercel.app/feed",
+      category: "frontend"
+    },
+    {
+      id: 10,
+      title: "Pop Prism Tetris",
+      description: "A vibrant, browser-based Tetris game with colorful prismatic blocks and smooth gameplay mechanics built for the web.",
+      image: "/project-images/tetris.png",
+      tags: ["JavaScript", "Game", "Canvas", "Web App"],
+      liveUrl: "https://pop-prism-tetris-play.vercel.app/",
+      category: "frontend"
     },
     {
       id: 9,
