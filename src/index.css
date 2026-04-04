@@ -7,41 +7,41 @@
 
 @layer base {
   :root {
-    --background: 40 38% 97%;
-    --foreground: 214 30% 14%;
+    --background: 214 31% 9%;
+    --foreground: 40 38% 96%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 214 30% 14%;
+    --card: 215 28% 13%;
+    --card-foreground: 40 38% 96%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 214 30% 14%;
+    --popover: 215 28% 13%;
+    --popover-foreground: 40 38% 96%;
 
-    --primary: 186 73% 34%;
-    --primary-foreground: 40 38% 97%;
+    --primary: 184 59% 58%;
+    --primary-foreground: 214 31% 9%;
 
-    --secondary: 36 45% 92%;
-    --secondary-foreground: 214 30% 14%;
+    --secondary: 215 21% 18%;
+    --secondary-foreground: 40 38% 96%;
 
-    --muted: 34 31% 93%;
-    --muted-foreground: 215 16% 39%;
+    --muted: 215 20% 18%;
+    --muted-foreground: 214 18% 73%;
 
-    --accent: 18 89% 59%;
-    --accent-foreground: 40 38% 97%;
+    --accent: 20 92% 62%;
+    --accent-foreground: 214 31% 9%;
 
-    --destructive: 0 62% 30%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 63% 43%;
+    --destructive-foreground: 40 38% 96%;
 
-    --border: 32 25% 84%;
-    --input: 32 25% 84%;
-    --ring: 186 73% 34%;
+    --border: 215 16% 24%;
+    --input: 215 16% 24%;
+    --ring: 184 59% 58%;
 
     --radius: 1rem;
-    --grid-line: rgba(12, 126, 137, 0.12);
-    --glow-primary: 12, 126, 137;
-    --glow-accent: 237, 107, 61;
+    --grid-line: rgba(114, 220, 224, 0.14);
+    --glow-primary: 114, 220, 224;
+    --glow-accent: 255, 143, 107;
   }
 
-  .dark {
+  .midnight {
     --background: 214 31% 9%;
     --foreground: 40 38% 96%;
 
@@ -73,6 +73,40 @@
     --grid-line: rgba(114, 220, 224, 0.14);
     --glow-primary: 114, 220, 224;
     --glow-accent: 255, 143, 107;
+  }
+
+  .graphite {
+    --background: 225 20% 10%;
+    --foreground: 220 23% 94%;
+
+    --card: 228 18% 14%;
+    --card-foreground: 220 23% 94%;
+
+    --popover: 228 18% 14%;
+    --popover-foreground: 220 23% 94%;
+
+    --primary: 271 80% 71%;
+    --primary-foreground: 228 22% 10%;
+
+    --secondary: 226 15% 20%;
+    --secondary-foreground: 220 23% 94%;
+
+    --muted: 226 14% 19%;
+    --muted-foreground: 223 14% 71%;
+
+    --accent: 196 79% 63%;
+    --accent-foreground: 228 22% 10%;
+
+    --destructive: 0 65% 44%;
+    --destructive-foreground: 220 23% 94%;
+
+    --border: 226 12% 26%;
+    --input: 226 12% 26%;
+    --ring: 271 80% 71%;
+
+    --grid-line: rgba(167, 139, 250, 0.14);
+    --glow-primary: 167, 139, 250;
+    --glow-accent: 103, 232, 249;
   }
 }
 
