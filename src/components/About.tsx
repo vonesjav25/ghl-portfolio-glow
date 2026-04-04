@@ -1,224 +1,200 @@
-import { Code, Briefcase, Users, Globe, Palette, Zap, Atom, Heart, Waves, Hash, Triangle, Server, Coffee, Database, Leaf, FileText, Github, Code2, Figma, Settings, Terminal, Layers } from 'lucide-react';
+import {
+  Blocks,
+  Briefcase,
+  Code,
+  Database,
+  Globe,
+  Layers,
+  MessagesSquare,
+  Server,
+  Settings,
+  ShieldCheck,
+  Terminal,
+} from "lucide-react";
+
 import { Card, CardContent } from "@/components/ui/card";
 
 const About = () => {
-  const frontendTech = [
-    { name: "Angular", icon: Atom },
-    { name: "React", icon: Atom },
-    { name: "PreactJs", icon: Heart },
-    { name: "HTML", icon: Globe },
-    { name: "CSS", icon: Palette },
-    { name: "JavaScript", icon: Zap },
-    { name: "TypeScript", icon: Code },
-    { name: "Bootstrap", icon: Hash },
-    { name: "SASS", icon: Waves },
-    { name: "jQuery", icon: Code2 },
-    { name: "Ionic", icon: Triangle },
-    { name: "PixiJS", icon: Layers }
+  const proofPoints = [
+    { value: "12+", label: "years across enterprise, agency, and product work" },
+    { value: "7", label: "roles spanning consulting, travel, civic tech, and SaaS" },
+    { value: "End-to-end", label: "delivery from UI systems to backend integration" },
   ];
 
-  const backendTech = [
-    { name: "Node.js", icon: Server },
-    { name: "NestJS", icon: Server },
-    { name: "ExpressJS", icon: Server },
-    { name: "PHP", icon: Code },
-    { name: "MySQL", icon: Database },
-    { name: "PostgreSQL", icon: Database },
-    { name: "SQLite", icon: Database },
-    { name: "Oracle", icon: Database }
+  const strengths = [
+    {
+      title: "Product-minded frontend craft",
+      description:
+        "I design interfaces to be readable, resilient, and fast to extend, not just visually polished.",
+      icon: Blocks,
+    },
+    {
+      title: "Client communication without translation loss",
+      description:
+        "I am comfortable gathering requirements directly, shaping scope, and turning business language into implementation detail.",
+      icon: MessagesSquare,
+    },
+    {
+      title: "Delivery patterns that scale",
+      description:
+        "Reusable components, shared services, and pragmatic architecture keep teams moving after launch.",
+      icon: ShieldCheck,
+    },
   ];
 
-  const tools = [
-    { name: "Git", icon: Github },
-    { name: "CGI", icon: Terminal },
-    { name: "Bash", icon: Terminal },
-    { name: "Unix", icon: Terminal },
-    { name: "Awk", icon: Terminal },
-    { name: "CodeIgniter", icon: Settings },
-    { name: "WordPress", icon: Globe },
-    { name: "WinJS", icon: Code2 }
+  const techGroups = [
+    {
+      title: "Frontend",
+      icon: Globe,
+      items: ["Angular", "React", "Preact", "TypeScript", "JavaScript", "HTML", "CSS", "SASS", "Ionic", "PixiJS"],
+    },
+    {
+      title: "Backend and Data",
+      icon: Server,
+      items: ["Node.js", "NestJS", "ExpressJS", "PHP", "Oracle", "MySQL", "PostgreSQL", "SQLite"],
+    },
+    {
+      title: "Tooling and Systems",
+      icon: Terminal,
+      items: ["Git", "Bash", "Unix", "CGI", "Awk", "WordPress", "CodeIgniter", "WinJS"],
+    },
   ];
+
+  const values = [
+    {
+      title: "Clarity over noise",
+      description: "I favor direct communication, clean implementation, and interfaces that make the next decision obvious.",
+      icon: Code,
+    },
+    {
+      title: "Systems thinking",
+      description: "I look beyond a single feature and shape patterns that reduce repeated work across teams and releases.",
+      icon: Layers,
+    },
+    {
+      title: "Reliable execution",
+      description: "I focus on maintainability, documentation, and delivery discipline so projects stay stable under pressure.",
+      icon: Settings,
+    },
+  ];
+
+  const domainIcons = [Briefcase, Database, Server];
 
   return (
-    <section id="about" className="py-20 bg-secondary relative">
-      <div className="container mx-auto px-4">
-        <div className="mb-16 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">About Me</h2>
-          <div className="h-1 w-20 bg-primary mx-auto"></div>
+    <section id="about" className="relative bg-secondary/45 py-24">
+      <div className="container px-4">
+        <div className="mx-auto max-w-3xl text-center">
+          <div className="mb-4 text-sm font-semibold uppercase tracking-[0.26em] text-primary">About Me</div>
+          <h2 className="font-display text-4xl font-bold tracking-tight sm:text-5xl">
+            Technical depth backed by calm execution and strong client partnership.
+          </h2>
+          <p className="mt-6 text-lg leading-8 text-muted-foreground">
+            I have spent more than a decade building digital products across enterprise consulting, agency delivery,
+            civic tech, travel, and custom business platforms. My best work sits at the intersection of thoughtful UI,
+            dependable engineering, and clear communication.
+          </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <p className="text-lg mb-6 text-muted-foreground leading-relaxed">
-              I'm a seasoned full-stack developer with over 12 years of experience building 
-              robust web applications and enterprise-grade solutions. Currently working as an 
-              App Developer at Accenture, I specialize in modern JavaScript frameworks and backend systems.
-            </p>
-            <p className="text-lg mb-6 text-muted-foreground leading-relaxed">
-              My expertise spans from Angular and React to Node.js, PHP, and databases like Oracle 
-              and PostgreSQL. I've worked across diverse industries including IT consulting, travel, 
-              and mobile applications.
-            </p>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              I thrive on solving complex technical challenges, collaborating with clients to understand 
-              their needs, and architecting scalable solutions that drive business value.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-2xl font-bold mb-6">My Expertise</h3>
-            
-            <style>
-              {`
-                @keyframes slideInRight {
-                  from {
-                    opacity: 0;
-                    transform: translateX(-20px);
-                  }
-                  to {
-                    opacity: 1;
-                    transform: translateX(0);
-                  }
-                }
-                .expertise-card {
-                  animation: slideInRight 0.6s ease-out forwards;
-                  opacity: 0;
-                }
-                .expertise-card:nth-child(1) { animation-delay: 0.1s; }
-                .expertise-card:nth-child(2) { animation-delay: 0.2s; }
-                .expertise-card:nth-child(3) { animation-delay: 0.3s; }
-              `}
-            </style>
-            
-            <div className="space-y-6">
-              <div className="expertise-card flex items-start gap-4 group hover:translate-x-2 transition-transform duration-300">
-                <div className="bg-gradient-to-br from-blue-500 to-cyan-500 p-3 rounded-lg group-hover:shadow-lg group-hover:shadow-blue-500/50 transition-all duration-300 group-hover:scale-110">
-                  <Code className="h-6 w-6 text-white" />
-                </div>
-                <div>
-                  <h4 className="text-xl font-semibold mb-2 group-hover:text-blue-400 transition-colors duration-300">Full-Stack Development</h4>
-                  <p className="text-muted-foreground">
-                    Building end-to-end solutions with Angular, React, Node.js, and PHP for 
-                    scalable enterprise applications.
-                  </p>
-                </div>
-              </div>
-              
-              <div className="expertise-card flex items-start gap-4 group hover:translate-x-2 transition-transform duration-300">
-                <div className="bg-gradient-to-br from-green-500 to-emerald-500 p-3 rounded-lg group-hover:shadow-lg group-hover:shadow-green-500/50 transition-all duration-300 group-hover:scale-110">
-                  <Briefcase className="h-6 w-6 text-white" />
-                </div>
-                <div>
-                  <h4 className="text-xl font-semibold mb-2 group-hover:text-green-400 transition-colors duration-300">Enterprise Solutions</h4>
-                  <p className="text-muted-foreground">
-                    Working with enterprise clients at Accenture and Atos to deliver custom 
-                    solutions and technical consulting services.
-                  </p>
-                </div>
-              </div>
-              
-              <div className="expertise-card flex items-start gap-4 group hover:translate-x-2 transition-transform duration-300">
-                <div className="bg-gradient-to-br from-purple-500 to-pink-500 p-3 rounded-lg group-hover:shadow-lg group-hover:shadow-purple-500/50 transition-all duration-300 group-hover:scale-110">
-                  <Users className="h-6 w-6 text-white" />
-                </div>
-                <div>
-                  <h4 className="text-xl font-semibold mb-2 group-hover:text-purple-400 transition-colors duration-300">Technical Leadership</h4>
-                  <p className="text-muted-foreground">
-                    Creating reusable component libraries, architecting systems, and mentoring 
-                    teams on best practices and modern development workflows.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div className="mt-12 grid gap-4 md:grid-cols-3">
+          {proofPoints.map((item) => (
+            <Card key={item.label} className="rounded-[1.75rem] border-border/70 bg-card/80 shadow-sm">
+              <CardContent className="p-6">
+                <div className="font-display text-3xl font-bold text-foreground">{item.value}</div>
+                <p className="mt-3 text-sm leading-6 text-muted-foreground">{item.label}</p>
+              </CardContent>
+            </Card>
+          ))}
         </div>
 
-        <div className="mt-20">
-          <div className="text-center mb-10">
-            <h3 className="text-2xl font-bold mb-2">Tools & Technologies</h3>
-            <p className="text-muted-foreground">The tools I work with daily</p>
-          </div>
-
-          <style>
-            {`
-              @keyframes float {
-                0%, 100% { transform: translateY(0px); }
-                50% { transform: translateY(-8px); }
-              }
-              .tech-item {
-                animation: float 3s ease-in-out infinite;
-              }
-            `}
-          </style>
-
+        <div className="mt-16 grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
           <div className="space-y-8">
-            {/* Frontend */}
-            <div>
-              <h4 className="text-lg font-semibold text-center mb-4 text-muted-foreground">Frontend</h4>
-              <div className="grid grid-cols-4 md:grid-cols-6 gap-3 max-w-4xl mx-auto">
-                {frontendTech.map((tech, index) => {
-                  const IconComponent = tech.icon;
-                  return (
-                    <div key={tech.name} className="flex flex-col items-center group">
-                      <div 
-                        className="tech-item w-12 h-12 rounded-lg flex items-center justify-center mb-2 group-hover:scale-110 transition-all duration-300 border border-blue-500/20 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 group-hover:from-blue-500/20 group-hover:to-cyan-500/20 group-hover:border-blue-400/40 group-hover:shadow-lg group-hover:shadow-blue-500/20"
-                        style={{ animationDelay: `${index * 0.1}s` }}
-                      >
-                        <IconComponent className="w-5 h-5 text-blue-400 group-hover:text-blue-300 transition-colors duration-300" />
-                      </div>
-                      <span className="text-xs font-medium text-center text-muted-foreground group-hover:text-blue-400 transition-colors duration-300">{tech.name}</span>
-                    </div>
-                  );
-                })}
+            <div className="rounded-[2rem] border border-border/70 bg-card/80 p-8 shadow-sm">
+              <div className="text-sm font-semibold uppercase tracking-[0.24em] text-primary">Personal Brand</div>
+              <div className="mt-5 space-y-5 text-base leading-8 text-muted-foreground">
+                <p>
+                  I bring a blend of frontend precision, systems awareness, and practical leadership. That means I can
+                  move from polishing component details to shaping delivery patterns, documenting solutions, and helping
+                  teams stay aligned when requirements shift.
+                </p>
+                <p>
+                  The through-line in my work is trust: clients need clear answers, teams need dependable systems, and
+                  products need structure that remains useful after the initial release.
+                </p>
               </div>
             </div>
 
-            {/* Backend */}
-            <div>
-              <h4 className="text-lg font-semibold text-center mb-4 text-muted-foreground">Backend</h4>
-              <div className="flex justify-center">
-                <div className="grid grid-cols-4 md:grid-cols-4 gap-3 max-w-lg">
-                  {backendTech.map((tech, index) => {
-                    const IconComponent = tech.icon;
-                    return (
-                      <div key={tech.name} className="flex flex-col items-center group">
-                        <div 
-                          className="tech-item w-12 h-12 rounded-lg flex items-center justify-center mb-2 group-hover:scale-110 transition-all duration-300 border border-green-500/20 bg-gradient-to-br from-green-500/10 to-emerald-500/10 group-hover:from-green-500/20 group-hover:to-emerald-500/20 group-hover:border-green-400/40 group-hover:shadow-lg group-hover:shadow-green-500/20"
-                          style={{ animationDelay: `${index * 0.1}s` }}
-                        >
-                          <IconComponent className="w-5 h-5 text-green-400 group-hover:text-green-300 transition-colors duration-300" />
-                        </div>
-                        <span className="text-xs font-medium text-center text-muted-foreground group-hover:text-green-400 transition-colors duration-300">{tech.name}</span>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
+            <div className="grid gap-4 md:grid-cols-3">
+              {values.map((value) => {
+                const Icon = value.icon;
 
-            {/* Tools */}
-            <div>
-              <h4 className="text-lg font-semibold text-center mb-4 text-muted-foreground">Tools</h4>
-              <div className="flex justify-center">
-                <div className="grid grid-cols-4 md:grid-cols-4 gap-3 max-w-lg">
-                  {tools.map((tool, index) => {
-                    const IconComponent = tool.icon;
-                    return (
-                      <div key={tool.name} className="flex flex-col items-center group">
-                        <div 
-                          className="tech-item w-12 h-12 rounded-lg flex items-center justify-center mb-2 group-hover:scale-110 transition-all duration-300 border border-purple-500/20 bg-gradient-to-br from-purple-500/10 to-pink-500/10 group-hover:from-purple-500/20 group-hover:to-pink-500/20 group-hover:border-purple-400/40 group-hover:shadow-lg group-hover:shadow-purple-500/20"
-                          style={{ animationDelay: `${index * 0.1}s` }}
-                        >
-                          <IconComponent className="w-5 h-5 text-purple-400 group-hover:text-purple-300 transition-colors duration-300" />
-                        </div>
-                        <span className="text-xs font-medium text-center text-muted-foreground group-hover:text-purple-400 transition-colors duration-300">{tool.name}</span>
+                return (
+                  <Card key={value.title} className="rounded-[1.75rem] border-border/70 bg-card/80 shadow-sm transition-transform duration-300 hover:-translate-y-1">
+                    <CardContent className="p-6">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/12 text-primary">
+                        <Icon className="h-5 w-5" />
                       </div>
-                    );
-                  })}
-                </div>
-              </div>
+                      <h3 className="mt-5 text-xl font-semibold text-foreground">{value.title}</h3>
+                      <p className="mt-3 text-sm leading-6 text-muted-foreground">{value.description}</p>
+                    </CardContent>
+                  </Card>
+                );
+              })}
             </div>
           </div>
+
+          <div className="space-y-4">
+            {strengths.map((strength) => {
+              const Icon = strength.icon;
+
+              return (
+                <Card key={strength.title} className="rounded-[1.75rem] border-border/70 bg-card/80 shadow-sm">
+                  <CardContent className="flex gap-4 p-6">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-accent/12 text-accent">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-semibold text-foreground">{strength.title}</h3>
+                      <p className="mt-2 text-sm leading-6 text-muted-foreground">{strength.description}</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="mt-16 grid gap-6 lg:grid-cols-3">
+          {techGroups.map((group, index) => {
+            const Icon = group.icon;
+            const AccentIcon = domainIcons[index] ?? Code;
+
+            return (
+              <Card key={group.title} className="rounded-[1.75rem] border-border/70 bg-card/80 shadow-sm">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/12 text-primary">
+                        <Icon className="h-5 w-5" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-foreground">{group.title}</h3>
+                    </div>
+                    <AccentIcon className="h-5 w-5 text-muted-foreground" />
+                  </div>
+
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {group.items.map((item) => (
+                      <span
+                        key={item}
+                        className="rounded-full border border-border/70 bg-background/70 px-3 py-1.5 text-sm text-muted-foreground"
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            );
+          })}
         </div>
       </div>
     </section>

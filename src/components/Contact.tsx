@@ -1,77 +1,237 @@
 
-import { Mail, MessageSquare, Phone } from 'lucide-react';
+import type { ReactNode } from "react";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Github, Mail, MapPin, Phone, Send } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+
+import { Button } from "@/components/ui/button";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { toast } from "@/components/ui/use-toast";
+
+const contactSchema = z.object({
+  name: z.string().min(2, "Please enter your name."),
+  email: z.string().email("Please enter a valid email address."),
+  company: z.string().optional(),
+  message: z.string().min(20, "Please share a bit more detail about the project or role."),
+});
+
+type ContactValues = z.infer<typeof contactSchema>;
 
 const Contact = () => {
+  const form = useForm<ContactValues>({
+    resolver: zodResolver(contactSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      company: "",
+      message: "",
+    },
+  });
+
+  const onSubmit = (values: ContactValues) => {
+    const subject = encodeURIComponent(`Portfolio inquiry from ${values.name}`);
+    const body = encodeURIComponent(
+      [
+        `Name: ${values.name}`,
+        `Email: ${values.email}`,
+        `Company: ${values.company || "Not provided"}`,
+        "",
+        values.message,
+      ].join("\n")
+    );
+
+    toast({
+      title: "Message prepared",
+      description: "Your email client will open with the project details pre-filled.",
+    });
+
+    window.location.href = `mailto:alvinjavelosa@gmail.com?subject=${subject}&body=${body}`;
+    form.reset();
+  };
+
+  const contactCards = [
+    {
+      title: "Email",
+      value: "alvinjavelosa@gmail.com",
+      href: "mailto:alvinjavelosa@gmail.com",
+      icon: Mail,
+    },
+    {
+      title: "Phone",
+      value: "+63 916 570 5005",
+      href: "tel:+639165705005",
+      icon: Phone,
+    },
+    {
+      title: "Location",
+      value: "Philippines, open to remote and hybrid work",
+      href: undefined,
+      icon: MapPin,
+    },
+  ];
+
   return (
-    <section id="contact" className="py-20 bg-secondary">
-      <div className="container mx-auto px-4">
-        <div className="mb-16 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Get In Touch</h2>
-          <div className="h-1 w-20 bg-primary mx-auto mb-6"></div>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Have a project in mind or want to collaborate? Feel free to reach out!
+    <section id="contact" className="bg-secondary/45 py-24">
+      <div className="container px-4">
+        <div className="mx-auto max-w-3xl text-center">
+          <div className="mb-4 text-sm font-semibold uppercase tracking-[0.26em] text-primary">Contact</div>
+          <h2 className="font-display text-4xl font-bold tracking-tight sm:text-5xl">A cleaner path for hiring teams, clients, and collaborators.</h2>
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-muted-foreground">
+            Share the role, project, or challenge you are working on. This form validates input on the frontend and prepares a structured outreach email.
           </p>
         </div>
 
-        <div className="max-w-3xl mx-auto">
-          <h3 className="text-2xl font-bold mb-8 text-center">Contact Information</h3>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="flex flex-col items-center text-center">
-              <div className="bg-primary p-4 rounded-lg mb-4">
-                <Mail className="h-8 w-8 text-primary-foreground" />
-              </div>
-              <h4 className="text-xl font-semibold mb-2">Email</h4>
-              <a 
-                href="mailto:alvinjavelosa@gmail.com" 
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                alvinjavelosa@gmail.com
-              </a>
-            </div>
-            
-            <div className="flex flex-col items-center text-center">
-              <div className="bg-primary p-4 rounded-lg mb-4">
-                <Phone className="h-8 w-8 text-primary-foreground" />
-              </div>
-              <h4 className="text-xl font-semibold mb-2">Phone</h4>
-              <a 
-                href="tel:+639165705005" 
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                +63 916 570 5005
-              </a>
-            </div>
-            
-            <div className="flex flex-col items-center text-center">
-              <div className="bg-primary p-4 rounded-lg mb-4">
-                <MessageSquare className="h-8 w-8 text-primary-foreground" />
-              </div>
-              <h4 className="text-xl font-semibold mb-2">Social Media</h4>
-              <div className="space-y-2">
-                <a 
-                  href="https://linkedin.com" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="block text-primary hover:underline"
-                >
-                  LinkedIn
+        <div className="mx-auto mt-14 grid max-w-6xl gap-8 lg:grid-cols-[0.92fr_1.08fr]">
+          <div className="space-y-6">
+            {contactCards.map((item) => {
+              const Icon = item.icon;
+
+              const content = (
+                <CardShell>
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/12 text-primary">
+                    <Icon className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <div className="text-sm font-semibold uppercase tracking-[0.22em] text-primary">{item.title}</div>
+                    <div className="mt-2 text-base leading-7 text-foreground">{item.value}</div>
+                  </div>
+                </CardShell>
+              );
+
+              return item.href ? (
+                <a key={item.title} href={item.href} className="block transition-transform duration-300 hover:-translate-y-1">
+                  {content}
                 </a>
-                <a 
-                  href="https://github.com" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="block text-primary hover:underline"
-                >
-                  GitHub
-                </a>
+              ) : (
+                <div key={item.title}>{content}</div>
+              );
+            })}
+
+            <CardShell>
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-accent/12 text-accent">
+                <Github className="h-5 w-5" />
               </div>
+              <div>
+                <div className="text-sm font-semibold uppercase tracking-[0.22em] text-primary">Code and Resume Access</div>
+                <p className="mt-2 text-sm leading-7 text-muted-foreground">
+                  Public code is available on GitHub, and a resume PDF plus client references can be shared on request.
+                </p>
+                <div className="mt-4 flex flex-wrap gap-3">
+                  <Button asChild variant="outline" className="rounded-full">
+                    <a href="https://github.com/vonesjav25" target="_blank" rel="noopener noreferrer">
+                      GitHub Profile
+                    </a>
+                  </Button>
+                  <Button asChild className="rounded-full">
+                    <a href="mailto:alvinjavelosa@gmail.com?subject=Resume%20Request">
+                      Request Resume
+                    </a>
+                  </Button>
+                </div>
+              </div>
+            </CardShell>
+          </div>
+
+          <div className="rounded-[2rem] border border-border/70 bg-card/80 p-8 shadow-sm">
+            <div className="mb-6">
+              <h3 className="font-display text-3xl font-bold tracking-tight">Start the conversation</h3>
+              <p className="mt-3 text-muted-foreground">
+                Include the role, scope, timeline, or product context and I will have enough detail to respond quickly.
+              </p>
             </div>
+
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+                <div className="grid gap-5 md:grid-cols-2">
+                  <FormField
+                    control={form.control}
+                    name="name"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Name</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Your name" className="h-12 rounded-2xl border-border/70 bg-background/80" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Email</FormLabel>
+                        <FormControl>
+                          <Input placeholder="you@company.com" className="h-12 rounded-2xl border-border/70 bg-background/80" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+
+                <FormField
+                  control={form.control}
+                  name="company"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Company or Team</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Optional" className="h-12 rounded-2xl border-border/70 bg-background/80" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="message"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Project or Role Details</FormLabel>
+                      <FormControl>
+                        <Textarea
+                          placeholder="Tell me about the role, project goals, stack, or timeline."
+                          className="min-h-[180px] rounded-[1.5rem] border-border/70 bg-background/80 px-4 py-3"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <Button type="submit" size="lg" className="rounded-full px-7" disabled={form.formState.isSubmitting}>
+                  <Send className="h-4 w-4" />
+                  Send Inquiry
+                </Button>
+              </form>
+            </Form>
           </div>
         </div>
       </div>
     </section>
   );
 };
+
+const CardShell = ({ children }: { children: ReactNode }) => (
+  <div className="flex gap-4 rounded-[1.75rem] border border-border/70 bg-card/80 p-6 shadow-sm">
+    {children}
+  </div>
+);
 
 export default Contact;

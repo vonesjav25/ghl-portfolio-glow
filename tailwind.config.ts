@@ -70,7 +70,8 @@ export default {
 				sm: 'calc(var(--radius) - 4px)'
 			},
 			fontFamily: {
-				sans: ['Inter', 'sans-serif'],
+				display: ['Space Grotesk', 'sans-serif'],
+				sans: ['Manrope', 'sans-serif'],
 				mono: ['JetBrains Mono', 'monospace'],
 			},
 			keyframes: {

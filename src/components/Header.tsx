@@ -1,11 +1,21 @@
 
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { Github, Linkedin, Mail } from 'lucide-react';
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { Github, Mail, Menu, X } from "lucide-react";
+
+import ThemeToggle from "@/components/ThemeToggle";
+import { Button } from "@/components/ui/button";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const navItems = [
+    { href: "#about", label: "About" },
+    { href: "#experience", label: "Experience" },
+    { href: "#projects", label: "Projects" },
+    { href: "#contact", label: "Contact" },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,93 +29,97 @@ const Header = () => {
   }, []);
 
   return (
-    <header 
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-background/90 backdrop-blur-md py-3 shadow-md' : 'bg-transparent py-5'
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? "border-b border-border/60 bg-background/82 py-3 shadow-[0_12px_40px_rgba(15,23,42,0.08)] backdrop-blur-xl"
+          : "bg-transparent py-5"
       }`}
     >
-      <div className="container mx-auto px-4 flex justify-between items-center">
-        <Link to="/" className="text-2xl font-bold text-primary">
-          ALVIN<span className="text-foreground">_</span>
+      <div className="container flex items-center justify-between gap-4 px-4">
+        <Link to="/" className="flex items-center gap-3">
+          <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-border/70 bg-background/85 text-base font-bold text-primary shadow-sm">
+            AJ
+          </div>
+          <div>
+            <div className="font-display text-lg font-bold tracking-tight text-foreground">Alvin Javelosa</div>
+            <div className="text-xs uppercase tracking-[0.28em] text-muted-foreground">
+              Frontend and Full-Stack Developer
+            </div>
+          </div>
         </Link>
-        
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-8">
-          <a href="#about" className="text-foreground hover:text-primary transition-colors font-medium">About</a>
-          <a href="#projects" className="text-foreground hover:text-primary transition-colors font-medium">Work</a>
-          <a href="#contact" className="text-foreground hover:text-primary transition-colors font-medium">Contact</a>
-          
-          <div className="flex items-center space-x-4">
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-              <Github className="h-5 w-5 text-foreground hover:text-primary transition-colors" />
+
+        <nav className="hidden items-center gap-7 lg:flex">
+          {navItems.map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+            >
+              {item.label}
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-              <Linkedin className="h-5 w-5 text-foreground hover:text-primary transition-colors" />
-            </a>
-            <a href="mailto:contact@example.com" aria-label="Email">
-              <Mail className="h-5 w-5 text-foreground hover:text-primary transition-colors" />
-            </a>
+          ))}
+
+          <ThemeToggle />
+
+          <div className="flex items-center gap-2">
+            <Button asChild size="icon" variant="ghost" className="rounded-full">
+              <a href="https://github.com/vonesjav25" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">
+                <Github className="h-5 w-5" />
+              </a>
+            </Button>
+            <Button asChild size="icon" variant="ghost" className="rounded-full">
+              <a href="mailto:alvinjavelosa@gmail.com" aria-label="Email Alvin Javelosa">
+                <Mail className="h-5 w-5" />
+              </a>
+            </Button>
+            <Button asChild className="rounded-full px-5 font-semibold shadow-sm">
+              <a href="#contact">Start a Conversation</a>
+            </Button>
           </div>
         </nav>
 
-        {/* Mobile Menu Button */}
-        <button 
-          className="md:hidden text-foreground hover:text-primary"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label="Toggle menu"
-        >
-          <svg 
-            xmlns="http://www.w3.org/2000/svg" 
-            fill="none" 
-            viewBox="0 0 24 24" 
-            stroke="currentColor" 
-            className="w-6 h-6"
+        <div className="flex items-center gap-3 lg:hidden">
+          <ThemeToggle />
+          <button
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border/70 bg-background/80 text-foreground shadow-sm backdrop-blur"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle menu"
           >
-            {isMobileMenuOpen ? (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            ) : (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            )}
-          </svg>
-        </button>
+            {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
       </div>
 
-      {/* Mobile Navigation */}
       {isMobileMenuOpen && (
-        <nav className="md:hidden bg-secondary py-4 px-4 absolute w-full">
-          <div className="flex flex-col space-y-4">
-            <a 
-              href="#about" 
-              className="text-foreground hover:text-primary transition-colors font-medium"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              About
-            </a>
-            <a 
-              href="#projects" 
-              className="text-foreground hover:text-primary transition-colors font-medium"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Work
-            </a>
-            <a 
-              href="#contact" 
-              className="text-foreground hover:text-primary transition-colors font-medium"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Contact
-            </a>
-            
-            <div className="flex items-center space-x-4 pt-2">
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                <Github className="h-5 w-5 text-foreground hover:text-primary transition-colors" />
-              </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                <Linkedin className="h-5 w-5 text-foreground hover:text-primary transition-colors" />
-              </a>
-              <a href="mailto:contact@example.com" aria-label="Email">
-                <Mail className="h-5 w-5 text-foreground hover:text-primary transition-colors" />
-              </a>
+        <nav className="container mt-3 lg:hidden">
+          <div className="rounded-3xl border border-border/70 bg-background/95 p-5 shadow-[0_24px_60px_rgba(15,23,42,0.14)] backdrop-blur-xl">
+            <div className="flex flex-col gap-4">
+              {navItems.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className="rounded-2xl px-3 py-2 text-sm font-medium text-foreground transition-colors hover:bg-secondary"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {item.label}
+                </a>
+              ))}
+
+              <div className="mt-2 flex items-center gap-3">
+                <Button asChild variant="outline" className="flex-1 rounded-full">
+                  <a href="https://github.com/vonesjav25" target="_blank" rel="noopener noreferrer">
+                    <Github className="h-4 w-4" />
+                    GitHub
+                  </a>
+                </Button>
+                <Button asChild className="flex-1 rounded-full">
+                  <a href="mailto:alvinjavelosa@gmail.com">
+                    <Mail className="h-4 w-4" />
+                    Email
+                  </a>
+                </Button>
+              </div>
             </div>
           </div>
         </nav>

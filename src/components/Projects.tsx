@@ -1,10 +1,11 @@
 
-import { useState } from 'react';
+import { useState } from "react";
+import { ArrowRight, ExternalLink, Github, Lock } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { ExternalLink, Github } from 'lucide-react';
 
-type Project = {
+type ArchiveProject = {
   id: number;
   title: string;
   description: string;
@@ -12,13 +13,71 @@ type Project = {
   tags: string[];
   liveUrl?: string;
   githubUrl?: string;
-  category: 'frontend' | 'fullstack' | 'ghl';
+  category: "frontend" | "fullstack" | "ghl";
+};
+
+type CaseStudy = {
+  id: number;
+  title: string;
+  role: string;
+  image: string;
+  tags: string[];
+  problem: string;
+  solution: string;
+  outcome: string;
+  liveUrl?: string;
+  githubUrl?: string;
 };
 
 const Projects = () => {
-  const [filter, setFilter] = useState<'all' | 'frontend' | 'fullstack' | 'ghl'>('all');
-  
-  const projects: Project[] = [
+  const [filter, setFilter] = useState<"all" | "frontend" | "fullstack" | "ghl">("all");
+
+  const caseStudies: CaseStudy[] = [
+    {
+      id: 1,
+      title: "SeePrompt",
+      role: "Product design and frontend implementation",
+      image: "/project-images/seeprompt.png",
+      tags: ["React", "TypeScript", "Dashboard", "AI Workflow"],
+      problem:
+        "Prompt-heavy workflows become messy fast when teams cannot quickly sort, score, and retrieve their best prompts.",
+      solution:
+        "I designed a focused dashboard experience with structured organization, filtering, and scoring patterns that make repeated prompt use easier.",
+      outcome:
+        "The result is a cleaner retrieval flow that supports faster AI experimentation and gives the product a more credible, tool-like feel.",
+      liveUrl: "https://seeprompt.vercel.app/",
+    },
+    {
+      id: 2,
+      title: "AHA Innovations",
+      role: "Brand-led business website delivery",
+      image: "/project-images/aha.png",
+      tags: ["React", "Business Website", "Brand Positioning", "UI/UX"],
+      problem:
+        "A service business needs trust quickly. If the site feels generic, the brand loses credibility before the conversation starts.",
+      solution:
+        "I translated the company's positioning into a polished, modern web presence with clear service framing, stronger hierarchy, and professional presentation.",
+      outcome:
+        "The site now works as a sharper credibility layer for outreach, discovery, and first impressions with prospective clients.",
+      liveUrl: "https://www.aha-innovations.com/",
+    },
+    {
+      id: 3,
+      title: "Voyce.me",
+      role: "Frontend experience and interface refinement",
+      image: "/project-images/voyceme.png",
+      tags: ["React", "Content Platform", "UI/UX", "Frontend"],
+      problem:
+        "Content-driven platforms need to balance clarity, readability, and personality without overwhelming the user.",
+      solution:
+        "I helped shape a cleaner presentation layer with modern frontend patterns, readable content flow, and an interface that stays visually engaging.",
+      outcome:
+        "The finished experience supports storytelling and updates more effectively while keeping the product approachable and easy to navigate.",
+      liveUrl: "https://www.voyce.me/",
+    },
+  ];
+
+  const projects: ArchiveProject[] = [
     {
       id: 8,
       title: "AHA Innovations",
@@ -120,76 +179,148 @@ const Projects = () => {
     }
   ];
 
-  const filteredProjects = filter === 'all' 
-    ? projects 
-    : projects.filter(project => project.category === filter);
+  const filteredProjects = filter === "all"
+    ? projects
+    : projects.filter((project) => project.category === filter);
 
   return (
-    <section id="projects" className="py-20 relative">
-      <div className="container mx-auto px-4">
-        <div className="mb-16 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Featured Projects</h2>
-          <div className="h-1 w-20 bg-primary mx-auto mb-6"></div>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Explore my recent work across various domains, from frontend development to GoHighLevel implementations.
+    <section id="projects" className="relative py-24">
+      <div className="container px-4">
+        <div className="mx-auto max-w-3xl text-center">
+          <div className="mb-4 text-sm font-semibold uppercase tracking-[0.26em] text-primary">Featured Projects</div>
+          <h2 className="font-display text-4xl font-bold tracking-tight sm:text-5xl">Project work framed as decisions, not just screenshots.</h2>
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-muted-foreground">
+            These featured builds show how I approach product problems, shape solutions, and deliver outcomes.
+            Most client repositories are private, so live links represent the shipped work.
           </p>
         </div>
 
-        <div className="flex justify-center mb-10">
-          <div className="inline-flex rounded-md bg-secondary p-1">
-            <Button 
-              variant={filter === 'all' ? 'default' : 'ghost'} 
-              onClick={() => setFilter('all')}
-              className="rounded-sm"
+        <div className="mt-14 space-y-8">
+          {caseStudies.map((project) => (
+            <Card key={project.id} className="overflow-hidden rounded-[2rem] border-border/70 bg-card/80 shadow-sm">
+              <div className="grid gap-0 lg:grid-cols-[0.92fr_1.08fr]">
+                <div className="relative aspect-[4/3] overflow-hidden lg:aspect-auto">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                  />
+                </div>
+
+                <div className="p-8 lg:p-10">
+                  <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
+                    <span className="rounded-full border border-border/70 bg-background/70 px-3 py-1">{project.role}</span>
+                    {project.tags.map((tag) => (
+                      <span key={tag} className="rounded-full bg-secondary px-3 py-1">{tag}</span>
+                    ))}
+                  </div>
+
+                  <h3 className="mt-5 font-display text-3xl font-bold tracking-tight text-foreground">{project.title}</h3>
+
+                  <div className="mt-8 grid gap-5 md:grid-cols-3">
+                    <div>
+                      <div className="text-sm font-semibold uppercase tracking-[0.22em] text-primary">Problem</div>
+                      <p className="mt-3 text-sm leading-7 text-muted-foreground">{project.problem}</p>
+                    </div>
+                    <div>
+                      <div className="text-sm font-semibold uppercase tracking-[0.22em] text-primary">Solution</div>
+                      <p className="mt-3 text-sm leading-7 text-muted-foreground">{project.solution}</p>
+                    </div>
+                    <div>
+                      <div className="text-sm font-semibold uppercase tracking-[0.22em] text-primary">Outcome</div>
+                      <p className="mt-3 text-sm leading-7 text-muted-foreground">{project.outcome}</p>
+                    </div>
+                  </div>
+
+                  <div className="mt-8 flex flex-wrap gap-3">
+                    {project.liveUrl && (
+                      <Button asChild className="rounded-full">
+                        <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                          <ExternalLink className="h-4 w-4" />
+                          View Live Project
+                        </a>
+                      </Button>
+                    )}
+                    {project.githubUrl ? (
+                      <Button asChild variant="outline" className="rounded-full">
+                        <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                          <Github className="h-4 w-4" />
+                          View Code
+                        </a>
+                      </Button>
+                    ) : (
+                      <div className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/70 px-4 py-2 text-sm text-muted-foreground">
+                        <Lock className="h-4 w-4" />
+                        Client code is private
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </Card>
+          ))}
+        </div>
+
+        <div className="mt-20 flex flex-col items-center justify-between gap-6 lg:flex-row">
+          <div>
+            <h3 className="font-display text-3xl font-bold tracking-tight">Selected launches and shipped builds</h3>
+            <p className="mt-2 max-w-2xl text-muted-foreground">
+              A broader view of frontend, full-stack, and GoHighLevel-adjacent work across business sites and product experiments.
+            </p>
+          </div>
+
+          <div className="inline-flex rounded-full border border-border/70 bg-card/80 p-1 shadow-sm">
+            <Button
+              variant={filter === "all" ? "default" : "ghost"}
+              onClick={() => setFilter("all")}
+              className="rounded-full"
             >
               All
             </Button>
-            <Button 
-              variant={filter === 'frontend' ? 'default' : 'ghost'} 
-              onClick={() => setFilter('frontend')}
-              className="rounded-sm"
+            <Button
+              variant={filter === "frontend" ? "default" : "ghost"}
+              onClick={() => setFilter("frontend")}
+              className="rounded-full"
             >
               Frontend
             </Button>
-            <Button 
-              variant={filter === 'fullstack' ? 'default' : 'ghost'} 
-              onClick={() => setFilter('fullstack')}
-              className="rounded-sm"
+            <Button
+              variant={filter === "fullstack" ? "default" : "ghost"}
+              onClick={() => setFilter("fullstack")}
+              className="rounded-full"
             >
               Full Stack
             </Button>
-            <Button 
-              variant={filter === 'ghl' ? 'default' : 'ghost'} 
-              onClick={() => setFilter('ghl')}
-              className="rounded-sm"
+            <Button
+              variant={filter === "ghl" ? "default" : "ghost"}
+              onClick={() => setFilter("ghl")}
+              className="rounded-full"
             >
               GHL
             </Button>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
           {filteredProjects.map((project) => (
-            <Card key={project.id} className="overflow-hidden bg-secondary border-none h-full flex flex-col transition-transform duration-300 hover:scale-[1.02]">
+            <Card key={project.id} className="flex h-full flex-col overflow-hidden rounded-[1.75rem] border-border/70 bg-card/80 shadow-sm transition-transform duration-300 hover:-translate-y-1">
               <div className="relative aspect-video overflow-hidden">
-                <img 
-                  src={project.image} 
+                <img
+                  src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover object-center transition-transform duration-300 hover:scale-105"
+                  className="h-full w-full object-cover object-center transition-transform duration-500 hover:scale-105"
                 />
               </div>
               <CardHeader>
-                <CardTitle>{project.title}</CardTitle>
+                <CardTitle className="font-display text-2xl tracking-tight">{project.title}</CardTitle>
               </CardHeader>
               <CardContent className="flex-grow">
-                <p className="text-muted-foreground">
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap gap-2 mt-4">
-                  {project.tags.map(tag => (
-                    <span 
-                      key={tag} 
-                      className="text-xs font-medium bg-accent px-2 py-1 rounded-full"
+                <p className="leading-7 text-muted-foreground">{project.description}</p>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {project.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-full border border-border/70 bg-background/70 px-3 py-1.5 text-xs font-medium text-muted-foreground"
                     >
                       {tag}
                     </span>
@@ -198,7 +329,7 @@ const Projects = () => {
               </CardContent>
               <CardFooter className="flex gap-4">
                 {project.liveUrl && (
-                  <Button asChild variant="default" size="sm">
+                  <Button asChild variant="default" size="sm" className="rounded-full">
                     <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                       <ExternalLink className="h-4 w-4" />
                       Live Demo
@@ -206,16 +337,47 @@ const Projects = () => {
                   </Button>
                 )}
                 {project.githubUrl && (
-                  <Button asChild variant="outline" size="sm">
+                  <Button asChild variant="outline" size="sm" className="rounded-full">
                     <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                       <Github className="h-4 w-4" />
                       Code
                     </a>
                   </Button>
                 )}
+                {!project.githubUrl && (
+                  <div className="inline-flex items-center gap-2 text-sm text-muted-foreground">
+                    <Lock className="h-4 w-4" />
+                    Private client work
+                  </div>
+                )}
               </CardFooter>
             </Card>
           ))}
+        </div>
+
+        <div className="mt-12 rounded-[1.75rem] border border-border/70 bg-card/80 p-6 shadow-sm">
+          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <div>
+              <h4 className="font-display text-2xl font-bold tracking-tight">Active code presence</h4>
+              <p className="mt-2 text-muted-foreground">
+                Public GitHub activity and this portfolio repository are available if you want to review recent work and implementation style.
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-3">
+              <Button asChild variant="outline" className="rounded-full">
+                <a href="https://github.com/vonesjav25" target="_blank" rel="noopener noreferrer">
+                  <Github className="h-4 w-4" />
+                  GitHub Profile
+                </a>
+              </Button>
+              <Button asChild className="rounded-full">
+                <a href="https://github.com/vonesjav25/ghl-portfolio-glow" target="_blank" rel="noopener noreferrer">
+                  <ArrowRight className="h-4 w-4" />
+                  Portfolio Repo
+                </a>
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
     </section>
