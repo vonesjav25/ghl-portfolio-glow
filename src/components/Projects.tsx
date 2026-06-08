@@ -360,16 +360,10 @@ const Projects = () => {
             <div>
               <h4 className="font-display text-2xl font-bold tracking-tight">Active code presence</h4>
               <p className="mt-2 text-muted-foreground">
-                Public GitHub activity and this portfolio repository are available if you want to review recent work and implementation style.
+                The portfolio repository is available if you want to review recent work and implementation style.
               </p>
             </div>
             <div className="flex flex-wrap gap-3">
-              <Button asChild variant="outline" className="rounded-full">
-                <a href="https://github.com/vonesjav25" target="_blank" rel="noopener noreferrer">
-                  <Github className="h-4 w-4" />
-                  GitHub Profile
-                </a>
-              </Button>
               <Button asChild className="rounded-full">
                 <a href="https://github.com/vonesjav25/ghl-portfolio-glow" target="_blank" rel="noopener noreferrer">
                   <ArrowRight className="h-4 w-4" />

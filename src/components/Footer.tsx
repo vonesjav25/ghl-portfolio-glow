@@ -1,6 +1,6 @@
 
 import { Link } from "react-router-dom";
-import { ArrowUpRight, Github, Mail } from "lucide-react";
+import { ArrowUpRight, Mail } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 
@@ -32,12 +32,6 @@ const Footer = () => {
 
           <div className="flex flex-col gap-4 lg:items-end">
             <div className="flex flex-wrap items-center gap-3">
-              <Button asChild variant="outline" className="rounded-full">
-                <a href="https://github.com/vonesjav25" target="_blank" rel="noopener noreferrer">
-                  <Github className="h-4 w-4" />
-                  GitHub
-                </a>
-              </Button>
               <Button asChild className="rounded-full">
                 <a href="mailto:alvinjavelosa@gmail.com?subject=Let's%20build%20something">
                   <Mail className="h-4 w-4" />

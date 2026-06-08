@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Github, Mail, Menu, X } from "lucide-react";
+import { Mail, Menu, X } from "lucide-react";
 
 import ThemeToggle from "@/components/ThemeToggle";
 import { Button } from "@/components/ui/button";
@@ -64,11 +64,6 @@ const Header = () => {
 
           <div className="flex items-center gap-2">
             <Button asChild size="icon" variant="ghost" className="rounded-full">
-              <a href="https://github.com/vonesjav25" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">
-                <Github className="h-5 w-5" />
-              </a>
-            </Button>
-            <Button asChild size="icon" variant="ghost" className="rounded-full">
               <a href="mailto:alvinjavelosa@gmail.com" aria-label="Email Alvin Javelosa">
                 <Mail className="h-5 w-5" />
               </a>
@@ -107,12 +102,6 @@ const Header = () => {
               ))}
 
               <div className="mt-2 flex items-center gap-3">
-                <Button asChild variant="outline" className="flex-1 rounded-full">
-                  <a href="https://github.com/vonesjav25" target="_blank" rel="noopener noreferrer">
-                    <Github className="h-4 w-4" />
-                    GitHub
-                  </a>
-                </Button>
                 <Button asChild className="flex-1 rounded-full">
                   <a href="mailto:alvinjavelosa@gmail.com">
                     <Mail className="h-4 w-4" />

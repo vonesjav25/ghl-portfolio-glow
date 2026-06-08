@@ -2,7 +2,7 @@
 import type { ReactNode } from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Github, Mail, MapPin, Phone, Send } from "lucide-react";
+import { Mail, MapPin, Phone, Send } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -119,20 +119,12 @@ const Contact = () => {
             })}
 
             <CardShell>
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-accent/12 text-accent">
-                <Github className="h-5 w-5" />
-              </div>
               <div>
                 <div className="text-sm font-semibold uppercase tracking-[0.22em] text-primary">Code and Resume Access</div>
                 <p className="mt-2 text-sm leading-7 text-muted-foreground">
-                  Public code is available on GitHub, and a resume PDF plus client references can be shared on request.
+                  Code samples can be provided on request, and a resume PDF plus client references can also be shared.
                 </p>
                 <div className="mt-4 flex flex-wrap gap-3">
-                  <Button asChild variant="outline" className="rounded-full">
-                    <a href="https://github.com/vonesjav25" target="_blank" rel="noopener noreferrer">
-                      GitHub Profile
-                    </a>
-                  </Button>
                   <Button asChild className="rounded-full">
                     <a href="mailto:alvinjavelosa@gmail.com?subject=Resume%20Request">
                       Request Resume
