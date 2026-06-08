@@ -75,6 +75,20 @@ const Projects = () => {
         "The finished experience supports storytelling and updates more effectively while keeping the product approachable and easy to navigate.",
       liveUrl: "https://www.voyce.me/",
     },
+    {
+      id: 4,
+      title: "Vieu Nature Adventure",
+      role: "Visual direction and frontend website implementation",
+      image: "https://vieu-seven.vercel.app/assets/hero-mountain-CCweTUlX.jpg",
+      tags: ["React", "Landing Page", "Brand Storytelling", "Frontend"],
+      problem:
+        "Lifestyle brands need an atmospheric first impression while still keeping navigation clear and conversion paths easy to find.",
+      solution:
+        "I delivered a cinematic, image-led web experience with a calm visual hierarchy, story-forward sections, and responsive layout behavior.",
+      outcome:
+        "The site now presents a stronger identity and a more memorable first-touch experience for visitors exploring the brand.",
+      liveUrl: "https://vieu-seven.vercel.app/",
+    },
   ];
 
   const projects: ArchiveProject[] = [
@@ -104,6 +118,42 @@ const Projects = () => {
       tags: ["React", "TypeScript", "Dashboard", "AI"],
       liveUrl: "https://seeprompt.vercel.app/",
       category: "fullstack"
+    },
+    {
+      id: 20,
+      title: "Vieu Nature Adventure",
+      description: "Atmospheric, visual-first website crafted for a nature adventure brand with clean navigation and story-led presentation.",
+      image: "https://vieu-seven.vercel.app/assets/hero-mountain-CCweTUlX.jpg",
+      tags: ["React", "Brand Website", "Storytelling", "Frontend"],
+      liveUrl: "https://vieu-seven.vercel.app/",
+      category: "frontend"
+    },
+    {
+      id: 11,
+      title: "FabPlanet Feed",
+      description: "A dynamic feed experience for FabPlanet designed to surface content in a clear, fast, and visually polished layout.",
+      image: "/project-images/fabplanet.png",
+      tags: ["React", "Feed", "Content", "Frontend"],
+      liveUrl: "https://fabplanet.vercel.app/feed",
+      category: "frontend"
+    },
+    {
+      id: 10,
+      title: "Pop Prism Tetris",
+      description: "A vibrant, browser-based Tetris game with colorful prismatic blocks and smooth gameplay mechanics built for the web.",
+      image: "/project-images/tetris.png",
+      tags: ["JavaScript", "Game", "Canvas", "Web App"],
+      liveUrl: "https://pop-prism-tetris-play.vercel.app/",
+      category: "frontend"
+    },
+    {
+      id: 9,
+      title: "Daily Verse",
+      description: "Inspirational daily scripture web app with serene visuals, rotating locations, and a clean reflective reading experience.",
+      image: "/project-images/daily-verse.png",
+      tags: ["React", "Vercel", "UI/UX", "Web App"],
+      liveUrl: "https://daily-verse-unfolded.vercel.app/",
+      category: "frontend"
     },
     {
       id: 19,
@@ -148,33 +198,6 @@ const Projects = () => {
       image: "/project-images/lilibel.jpg",
       tags: ["Website Development", "Villa", "Travel", "Frontend"],
       liveUrl: "http://villalilibel.com/",
-      category: "frontend"
-    },
-    {
-      id: 11,
-      title: "FabPlanet Feed",
-      description: "A dynamic feed experience for FabPlanet designed to surface content in a clear, fast, and visually polished layout.",
-      image: "/project-images/fabplanet.png",
-      tags: ["React", "Feed", "Content", "Frontend"],
-      liveUrl: "https://fabplanet.vercel.app/feed",
-      category: "frontend"
-    },
-    {
-      id: 10,
-      title: "Pop Prism Tetris",
-      description: "A vibrant, browser-based Tetris game with colorful prismatic blocks and smooth gameplay mechanics built for the web.",
-      image: "/project-images/tetris.png",
-      tags: ["JavaScript", "Game", "Canvas", "Web App"],
-      liveUrl: "https://pop-prism-tetris-play.vercel.app/",
-      category: "frontend"
-    },
-    {
-      id: 9,
-      title: "Daily Verse",
-      description: "Inspirational daily scripture web app with serene visuals, rotating locations, and a clean reflective reading experience.",
-      image: "/project-images/daily-verse.png",
-      tags: ["React", "Vercel", "UI/UX", "Web App"],
-      liveUrl: "https://daily-verse-unfolded.vercel.app/",
       category: "frontend"
     }
   ];
