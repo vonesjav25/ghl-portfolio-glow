@@ -1,19 +1,44 @@
 
+import { useRef, type ReactNode } from 'react';
 import { Briefcase, Calendar } from 'lucide-react';
+import { motion, useInView, useReducedMotion, useScroll, useSpring } from 'motion/react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
+const TimelineItem = ({ children }: { children: ReactNode }) => {
+  const dotRef = useRef<HTMLSpanElement>(null);
+  // Lights up once the drawn line reaches this role, and stays lit while scrolling past it.
+  const isReached = useInView(dotRef, { margin: "100000px 0px -30% 0px" });
+
+  return (
+    <div data-reveal className="relative pl-9 md:pl-12">
+      <span
+        ref={dotRef}
+        aria-hidden
+        data-reached={isReached}
+        className="absolute left-[7px] top-9 h-[11px] w-[11px] rounded-full border border-border bg-background transition-[background-color,border-color,box-shadow,transform] duration-500 data-[reached=true]:scale-110 data-[reached=true]:border-primary data-[reached=true]:bg-primary data-[reached=true]:glow-orange"
+      />
+      {children}
+    </div>
+  );
+};
+
 const Experience = () => {
+  const timelineRef = useRef<HTMLDivElement>(null);
+  const reduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: timelineRef, offset: ["start 70%", "end 70%"] });
+  const lineProgress = useSpring(scrollYProgress, { stiffness: 90, damping: 28, restDelta: 0.001 });
+
   const experiences = [
     {
       company: "Accenture",
       position: "App Developer",
       duration: "Jul 2024 – Current",
       type: "Full-stack Development, IT Services and Consulting",
-      stack: ["CGI", "Bash", "Unix", "Oracle", "Awk", "HTML", "CSS", "Javascript"],
+      stack: ["CGI", "Bash", "Unix", "Oracle", "Awk", "HTML", "CSS", "JavaScript"],
       responsibilities: [
-        "Build reusable components, services and libraries for future use",
-        "Communicate directly with clients to gather requirements, provide updates, clarify technical details, and ensure alignment with business goals",
-        "Participate in system architecture and solution design to create secure, maintainable, and well-documented software"
+        "Contribute to system architecture and solution design for secure, maintainable, well-documented software",
+        "Work directly with clients to gather requirements, clarify technical details, and keep delivery aligned with business goals",
+        "Develop reusable components, services, and libraries that support future delivery"
       ]
     },
     {
@@ -23,8 +48,8 @@ const Experience = () => {
       type: "Frontend Development, IT Services and Consulting",
       stack: ["Angular", "Git", "Bootstrap", "SASS"],
       responsibilities: [
-        "Build reusable components, services and libraries using Angular and Integrate with APIs",
-        "Communicate directly with clients to gather requirements, provide updates, clarify technical details, and ensure alignment with business goals"
+        "Developed reusable Angular components, services, and libraries integrated with APIs",
+        "Served as a direct client contact for requirements, status updates, and technical clarification"
       ]
     },
     {
@@ -32,11 +57,11 @@ const Experience = () => {
       position: "Software Engineer",
       duration: "Dec 2021 – May 2022",
       type: "Frontend Development, Mobile Application",
-      stack: ["PreactJs"],
+      stack: ["Preact"],
       responsibilities: [
-        "Build reusable components, services and libraries",
-        "Convert designs into functional mobile application features",
-        "Develop and execute project plans"
+        "Turned product designs into working mobile application features using Preact",
+        "Created shared components, services, and libraries for the application",
+        "Created and carried out project plans"
       ]
     },
     {
@@ -44,15 +69,14 @@ const Experience = () => {
       position: "Software Engineer",
       duration: "Jul 2017 – Jul 2020",
       type: "Frontend Development, Information Technology",
-      stack: ["JavaScript", "Typescript", "Html", "CSS/SASS", "MySQL", "PostgreSQL", "Git", "Angular", "PixiJS", "NestJS", "ExpressJS"],
+      stack: ["JavaScript", "TypeScript", "HTML", "CSS/SASS", "MySQL", "PostgreSQL", "Git", "Angular", "PixiJS", "NestJS", "ExpressJS"],
       responsibilities: [
-        "Research, design, implement and manage software programs",
-        "Build modular layouts, reusable code and libraries for future use",
-        "Collaborate with other team members (designers, product owners, back-end, devOps, etc)",
-        "Work closely with cross-functional departments to communicate project statuses and proposals",
-        "Write technical documentation, solutions design architecture",
-        "Develop and execute project plans",
-        "Test new softwares and fix bugs"
+        "Researched, designed, implemented, and managed software programs",
+        "Built modular layouts and shared code libraries",
+        "Partnered with designers, product owners, backend, and DevOps teams",
+        "Created project plans and presented status and proposals across departments",
+        "Wrote technical documentation and solution design architecture",
+        "Tested new software and fixed bugs"
       ]
     },
     {
@@ -62,12 +86,10 @@ const Experience = () => {
       type: "Frontend Development, Travel Agency, Information Technology",
       stack: ["PHP", "HTML", "XML", "CSS", "SASS", "JavaScript", "jQuery", "Bootstrap", "TypeScript", "Ionic", "Smarty", "WordPress", "Angular"],
       responsibilities: [
-        "Determine the structure and design of web pages",
-        "Ensure alignment of web design and user experience requirements",
-        "Ensure user interface design is compatible with any device resolution",
-        "Build reusable code for future use",
-        "Optimize web pages for maximum speed and scalability",
-        "Integrate with backend development"
+        "Defined web page structure and design in line with user experience requirements",
+        "Delivered responsive interfaces across device resolutions",
+        "Optimized web pages for speed and scalability",
+        "Built reusable frontend code and integrated it with backend development"
       ]
     },
     {
@@ -75,13 +97,12 @@ const Experience = () => {
       position: "Developer",
       duration: "Aug 2012 – May 2013",
       type: "Web and Software Development, Information Technology",
-      stack: ["HTML", "CSS", "PHP", "JavaScript", "jQuery", "WinJS", "MySQL", "SQLite", "CodeIgniter", "WordPress", "WinJS"],
+      stack: ["HTML", "CSS", "PHP", "JavaScript", "jQuery", "WinJS", "MySQL", "SQLite", "CodeIgniter", "WordPress"],
       responsibilities: [
-        "Work with developers to design algorithms and flowcharts",
-        "Produce clean, efficient code based on specifications",
-        "Integrate software components and third-party programs",
-        "Troubleshoot, debug and upgrade existing software",
-        "Create technical documentation for reference and reporting"
+        "Designed algorithms and flowcharts with the development team",
+        "Wrote clean, efficient code to specification and integrated third-party programs",
+        "Troubleshot, debugged, and upgraded existing software",
+        "Produced technical documentation for reference and reporting"
       ]
     },
     {
@@ -89,27 +110,34 @@ const Experience = () => {
       position: "Web Designer",
       duration: "Dec 2011 – Aug 2012",
       type: "Web Design and Frontend Development, IT, Web Development",
-      stack: ["PhotoshopCS5", "HTML", "CSS", "jQuery", "JavaScript", "WordPress", "Prestashop", "OsClass"],
+      stack: ["Photoshop", "HTML", "CSS", "jQuery", "JavaScript", "WordPress", "PrestaShop", "OsClass"],
       responsibilities: [
-        "Develop wireframes and task flows based on user needs",
-        "Create website designs (content, graphics and layouts)",
-        "Convert PSD to HTML/CSS",
-        "UX design"
+        "Developed wireframes and task flows based on user needs",
+        "Created website designs, including content, graphics, and layouts",
+        "Converted PSD designs to HTML/CSS and handled UX design"
       ]
     }
   ];
 
   return (
-    <section id="experience" className="py-20 bg-background relative">
+    <section id="experience" className="py-20 relative">
       <div className="container mx-auto px-4">
-        <div className="mb-16 text-center">
+        <div data-reveal="title" className="mb-16 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gradient">Experience</h2>
           <div className="h-1 w-20 bg-gradient-to-r from-violet-500 to-blue-500 mx-auto"></div>
         </div>
 
-        <div className="max-w-4xl mx-auto space-y-8">
+        <div ref={timelineRef} className="relative max-w-4xl mx-auto space-y-8">
+          <div aria-hidden className="absolute bottom-6 left-3 top-6 w-px bg-border/60">
+            <motion.div
+              className="h-full w-full origin-top bg-gradient-to-b from-primary to-accent"
+              style={{ scaleY: reduceMotion ? scrollYProgress : lineProgress }}
+            />
+          </div>
+
           {experiences.map((exp, index) => (
-            <Card key={index} className="bg-secondary border-violet-500/20 hover:border-violet-500/40 transition-all duration-300 hover:glow-orange">
+            <TimelineItem key={index}>
+            <Card className="bg-secondary border-violet-500/20 hover:border-violet-500/40 transition-[border-color,box-shadow] duration-300 hover:glow-orange">
               <CardHeader>
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                   <div className="flex items-start gap-4">
@@ -165,6 +193,7 @@ const Experience = () => {
                 </div>
               </CardContent>
             </Card>
+            </TimelineItem>
           ))}
         </div>
       </div>

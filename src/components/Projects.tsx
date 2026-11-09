@@ -138,6 +138,15 @@ const Projects = () => {
       category: "frontend"
     },
     {
+      id: 21,
+      title: "Millennial Business Innovations",
+      description: "Full-stack agency website for Millennial Business Innovations with service positioning, portfolio proof, blog content, and consultation-focused conversion paths.",
+      image: "/project-images/mbi.png",
+      tags: ["React", "Agency Website", "Lead Gen", "Full Stack"],
+      liveUrl: "https://www.millennialbusinessinnovations.com/",
+      category: "fullstack"
+    },
+    {
       id: 10,
       title: "Pop Prism Tetris",
       description: "A vibrant, browser-based Tetris game with colorful prismatic blocks and smooth gameplay mechanics built for the web.",

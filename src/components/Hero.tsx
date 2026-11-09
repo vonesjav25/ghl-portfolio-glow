@@ -1,99 +1,84 @@
 
+import { useRef, type CSSProperties, type ReactNode } from "react";
+import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 
-import { useEffect, useState } from 'react';
 import { Button } from "@/components/ui/button";
+import { SHOW_PROJECTS } from "@/lib/site-config";
+
+const delayStyle = (delay: number) => ({ "--delay": `${delay}ms` }) as CSSProperties;
+
+const MaskedText = ({ delay, children }: { delay: number; children: ReactNode }) => (
+  <span className="mask-line">
+    <span style={delayStyle(delay)}>{children}</span>
+  </span>
+);
 
 const Hero = () => {
-  const [typedText, setTypedText] = useState("");
-  const [isTyping, setIsTyping] = useState(true);
-  const [currentTextIndex, setCurrentTextIndex] = useState(0);
-  
-  const texts = [
-    "Frontend Developer",
-    "Fullstack Developer",
-    "Mobile App Developer",
-    "Software Developer",
-    "GHL Specialist",
-    "Web Designer"
-  ];
-  
-  const currentText = texts[currentTextIndex];
+  const sectionRef = useRef<HTMLElement>(null);
+  const reduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end start"] });
 
-  useEffect(() => {
-    if (isTyping) {
-      if (typedText.length < currentText.length) {
-        const timeout = setTimeout(() => {
-          setTypedText(currentText.slice(0, typedText.length + 1));
-        }, 100);
-        return () => clearTimeout(timeout);
-      } else {
-        // Text is fully typed, wait then start erasing
-        const timeout = setTimeout(() => {
-          setIsTyping(false);
-        }, 2000);
-        return () => clearTimeout(timeout);
-      }
-    } else {
-      // Erasing phase
-      if (typedText.length > 0) {
-        const timeout = setTimeout(() => {
-          setTypedText(typedText.slice(0, -1));
-        }, 50);
-        return () => clearTimeout(timeout);
-      } else {
-        // Text is fully erased, move to next text
-        setCurrentTextIndex((prev) => (prev + 1) % texts.length);
-        setIsTyping(true);
-      }
-    }
-  }, [typedText, isTyping, currentText, texts.length]);
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  const contentY = useTransform(scrollYProgress, [0, 1], [0, 96]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.75], [1, 0]);
+  const gridOpacity = useTransform(scrollYProgress, [0, 0.9], [1, 0]);
+  const nearOrbY = useTransform(scrollYProgress, [0, 1], [0, -140]);
+  const farOrbY = useTransform(scrollYProgress, [0, 1], [0, -56]);
 
   return (
-    <section className="pt-28 pb-20 md:pt-36 md:pb-32 relative overflow-hidden">
-      <div className="absolute inset-0 bg-grid-animated -z-10"></div>
-      <div className="absolute top-20 left-10 w-64 h-64 bg-violet-500/20 rounded-full blur-3xl floating"></div>
-      <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-400/20 rounded-full blur-3xl floating" style={{ animationDelay: '2s' }}></div>
-      
-      <div className="container mx-auto px-4">
+    <section ref={sectionRef} className="pt-28 pb-20 md:pt-36 md:pb-32 relative overflow-hidden">
+      <motion.div
+        className="absolute inset-0 bg-grid-soft -z-10"
+        style={reduceMotion ? undefined : { opacity: gridOpacity }}
+      />
+      <motion.div className="absolute top-20 left-10" style={reduceMotion ? undefined : { y: nearOrbY }}>
+        <div className="w-64 h-64 bg-violet-500/20 rounded-full blur-3xl floating"></div>
+      </motion.div>
+      <motion.div className="absolute bottom-20 right-10" style={reduceMotion ? undefined : { y: farOrbY }}>
+        <div className="w-96 h-96 bg-blue-400/20 rounded-full blur-3xl floating" style={{ animationDelay: '2s' }}></div>
+      </motion.div>
+
+      <motion.div
+        className="container mx-auto px-4"
+        style={reduceMotion ? undefined : { y: contentY, opacity: contentOpacity }}
+      >
         <div className="max-w-3xl mx-auto text-center">
-          <h1 className="animate-fade-in text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-            Hello, I'm <span className="text-gradient pulse-orange">Alvin Javelosa</span>
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+            <MaskedText delay={80}>Hello,</MaskedText>{" "}
+            <MaskedText delay={150}>I'm</MaskedText>{" "}
+            <MaskedText delay={240}>
+              <span className="text-gradient">Alvin Javelosa</span>
+            </MaskedText>
           </h1>
-          <div className="h-8 md:h-12 mb-8">
-            <h2 className="text-xl md:text-2xl lg:text-3xl font-mono text-gradient-orange">
-              {typedText}<span className={`inline-block w-1 h-5 md:h-6 bg-violet-400 ml-1 glow-orange ${isTyping || typedText.length > 0 ? 'animate-pulse' : 'opacity-0'}`}></span>
+          <div className="hero-rise" style={delayStyle(460)}>
+            <h2 className="mb-8 text-xl md:text-2xl lg:text-3xl font-mono text-gradient-orange">
+              Senior Frontend &amp; Full-Stack Developer
             </h2>
           </div>
-          <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Crafting beautiful, responsive web experiences as a seasoned front-end developer and versatile full-stack developer, driving impactful digital solutions for growing businesses.
+          <p className="hero-rise text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto" style={delayStyle(560)}>
+            13+ years building web and mobile products across enterprise consulting, travel, civic tech, and agency work, most recently at Accenture and Atos. I work directly with clients and deliver from UI to backend integration.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button 
-              size="lg" 
-              className="px-8 glow-orange-strong hover:glow-orange transition-all duration-300 bg-gradient-to-r from-violet-500 to-blue-600 hover:from-violet-600 hover:to-blue-700"
-              onClick={() => scrollToSection('projects')}
+          <div className="hero-rise flex flex-col sm:flex-row items-center justify-center gap-4" style={delayStyle(660)}>
+            <Button
+              asChild
+              size="lg"
+              className="px-8 glow-orange-strong hover:glow-orange bg-gradient-to-r from-violet-500 to-blue-600 hover:from-violet-600 hover:to-blue-700"
             >
-              View My Work
+              <a href={SHOW_PROJECTS ? "#projects" : "#experience"}>
+                {SHOW_PROJECTS ? "View My Work" : "View My Experience"}
+              </a>
             </Button>
-            <Button 
-              size="lg" 
-              variant="outline" 
-              className="px-8 border-glow hover:bg-violet-500/10 transition-all duration-300 border-violet-400 text-violet-400"
-              onClick={() => scrollToSection('contact')}
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="px-8 border-glow hover:bg-violet-500/10 border-violet-400 text-violet-400"
             >
-              Get In Touch
+              <a href="#contact">Get In Touch</a>
             </Button>
           </div>
         </div>
-      </div>
-      
+      </motion.div>
+
       <div className="absolute bottom-0 w-full h-24 bg-gradient-to-t from-background to-transparent"></div>
     </section>
   );

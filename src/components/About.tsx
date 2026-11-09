@@ -16,7 +16,7 @@ import { Card, CardContent } from "@/components/ui/card";
 
 const About = () => {
   const proofPoints = [
-    { value: "12+", label: "years across enterprise, agency, and product work" },
+    { value: "13+", label: "years across enterprise, agency, and product work" },
     { value: "7", label: "roles spanning consulting, travel, civic tech, and SaaS" },
     { value: "End-to-end", label: "delivery from UI systems to backend integration" },
   ];
@@ -56,7 +56,7 @@ const About = () => {
     {
       title: "Tooling and Systems",
       icon: Terminal,
-      items: ["Git", "Bash", "Unix", "CGI", "Awk", "WordPress", "CodeIgniter", "WinJS"],
+      items: ["Git", "Bash", "Unix", "WordPress", "CodeIgniter"],
     },
   ];
 
@@ -81,9 +81,9 @@ const About = () => {
   const domainIcons = [Briefcase, Database, Server];
 
   return (
-    <section id="about" className="relative bg-secondary/45 py-24">
+    <section id="about" className="section-fade relative py-24">
       <div className="container px-4">
-        <div className="mx-auto max-w-3xl text-center">
+        <div data-reveal="title" className="mx-auto max-w-3xl text-center">
           <div className="mb-4 text-sm font-semibold uppercase tracking-[0.26em] text-primary">About Me</div>
           <h2 className="font-display text-4xl font-bold tracking-tight sm:text-5xl">
             Technical depth backed by calm execution and strong client partnership.
@@ -97,7 +97,7 @@ const About = () => {
 
         <div className="mt-12 grid gap-4 md:grid-cols-3">
           {proofPoints.map((item) => (
-            <Card key={item.label} className="rounded-[1.75rem] border-border/70 bg-card/80 shadow-sm">
+            <Card data-reveal key={item.label} className="rounded-[1.75rem] border-border/70 bg-card/80 shadow-sm">
               <CardContent className="p-6">
                 <div className="font-display text-3xl font-bold text-foreground">{item.value}</div>
                 <p className="mt-3 text-sm leading-6 text-muted-foreground">{item.label}</p>
@@ -108,8 +108,8 @@ const About = () => {
 
         <div className="mt-16 grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
           <div className="space-y-8">
-            <div className="rounded-[2rem] border border-border/70 bg-card/80 p-8 shadow-sm">
-              <div className="text-sm font-semibold uppercase tracking-[0.24em] text-primary">Personal Brand</div>
+            <div data-reveal className="rounded-[2rem] border border-border/70 bg-card/80 p-8 shadow-sm">
+              <div className="text-sm font-semibold uppercase tracking-[0.24em] text-primary">How I Work</div>
               <div className="mt-5 space-y-5 text-base leading-8 text-muted-foreground">
                 <p>
                   I bring a blend of frontend precision, systems awareness, and practical leadership. That means I can
@@ -128,7 +128,7 @@ const About = () => {
                 const Icon = value.icon;
 
                 return (
-                  <Card key={value.title} className="rounded-[1.75rem] border-border/70 bg-card/80 shadow-sm transition-transform duration-300 hover:-translate-y-1">
+                  <Card data-reveal key={value.title} className="rounded-[1.75rem] border-border/70 bg-card/80 shadow-sm transition-transform duration-300 hover:-translate-y-1">
                     <CardContent className="p-6">
                       <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/12 text-primary">
                         <Icon className="h-5 w-5" />
@@ -147,7 +147,7 @@ const About = () => {
               const Icon = strength.icon;
 
               return (
-                <Card key={strength.title} className="rounded-[1.75rem] border-border/70 bg-card/80 shadow-sm">
+                <Card data-reveal key={strength.title} className="rounded-[1.75rem] border-border/70 bg-card/80 shadow-sm">
                   <CardContent className="flex gap-4 p-6">
                     <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-accent/12 text-accent">
                       <Icon className="h-5 w-5" />
@@ -169,7 +169,7 @@ const About = () => {
             const AccentIcon = domainIcons[index] ?? Code;
 
             return (
-              <Card key={group.title} className="rounded-[1.75rem] border-border/70 bg-card/80 shadow-sm">
+              <Card data-reveal key={group.title} className="rounded-[1.75rem] border-border/70 bg-card/80 shadow-sm">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">

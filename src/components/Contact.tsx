@@ -82,18 +82,18 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="bg-secondary/45 py-24">
+    <section id="contact" className="section-fade py-24">
       <div className="container px-4">
-        <div className="mx-auto max-w-3xl text-center">
+        <div data-reveal="title" className="mx-auto max-w-3xl text-center">
           <div className="mb-4 text-sm font-semibold uppercase tracking-[0.26em] text-primary">Contact</div>
           <h2 className="font-display text-4xl font-bold tracking-tight sm:text-5xl">A cleaner path for hiring teams, clients, and collaborators.</h2>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-muted-foreground">
-            Share the role, project, or challenge you are working on. This form validates input on the frontend and prepares a structured outreach email.
+            Share the role, project, or challenge you are working on.
           </p>
         </div>
 
         <div className="mx-auto mt-14 grid max-w-6xl gap-8 lg:grid-cols-[0.92fr_1.08fr]">
-          <div className="space-y-6">
+          <div data-reveal className="space-y-6">
             {contactCards.map((item) => {
               const Icon = item.icon;
 
@@ -135,7 +135,7 @@ const Contact = () => {
             </CardShell>
           </div>
 
-          <div className="rounded-[2rem] border border-border/70 bg-card/80 p-8 shadow-sm">
+          <div data-reveal className="rounded-[2rem] border border-border/70 bg-card/80 p-8 shadow-sm">
             <div className="mb-6">
               <h3 className="font-display text-3xl font-bold tracking-tight">Start the conversation</h3>
               <p className="mt-3 text-muted-foreground">

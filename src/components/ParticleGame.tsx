@@ -141,8 +141,8 @@ const PuzzleGame = () => {
   };
 
   return (
-    <section ref={sectionRef} className="py-16 bg-gradient-to-b from-background via-secondary/20 to-secondary relative overflow-hidden">
-      <div className="absolute inset-0 bg-grid opacity-30"></div>
+    <section ref={sectionRef} className="py-16 relative overflow-hidden">
+      <div className="absolute inset-0 bg-grid opacity-30 [mask-image:linear-gradient(180deg,transparent,black_18%,black_82%,transparent)]"></div>
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-8">

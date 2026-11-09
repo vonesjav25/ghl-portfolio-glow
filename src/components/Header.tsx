@@ -2,35 +2,53 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Mail, Menu, X } from "lucide-react";
+import { useMotionValueEvent, useScroll } from "motion/react";
 
 import ThemeToggle from "@/components/ThemeToggle";
 import { Button } from "@/components/ui/button";
+import { SHOW_PROJECTS } from "@/lib/site-config";
+
+const navItems = [
+  { href: "#experience", label: "Experience" },
+  { href: "#about", label: "About" },
+  ...(SHOW_PROJECTS ? [{ href: "#projects", label: "Projects" }] : []),
+  { href: "#contact", label: "Contact" },
+];
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeHref, setActiveHref] = useState("");
 
-  const navItems = [
-    { href: "#about", label: "About" },
-    { href: "#experience", label: "Experience" },
-    { href: "#projects", label: "Projects" },
-    { href: "#contact", label: "Contact" },
-  ];
+  const { scrollY } = useScroll();
+  useMotionValueEvent(scrollY, "change", (latest) => setIsScrolled(latest > 50));
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const href = `#${entry.target.id}`;
+          if (entry.isIntersecting) {
+            setActiveHref(href);
+          } else {
+            setActiveHref((current) => (current === href ? "" : current));
+          }
+        });
+      },
+      { rootMargin: "-45% 0px -50% 0px" }
+    );
 
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    navItems.forEach(({ href }) => {
+      const section = document.querySelector(href);
+      if (section) observer.observe(section);
+    });
+
+    return () => observer.disconnect();
   }, []);
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+      className={`fixed inset-x-0 top-0 z-50 transition-[padding,background-color,border-color,box-shadow] duration-300 ${
         isScrolled
           ? "border-b border-border/60 bg-background/82 py-3 shadow-[0_12px_40px_rgba(15,23,42,0.08)] backdrop-blur-xl"
           : "bg-transparent py-5"
@@ -38,13 +56,13 @@ const Header = () => {
     >
       <div className="container flex items-center justify-between gap-4 px-4">
         <Link to="/" className="flex items-center gap-3">
-          <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-border/70 bg-background/85 text-base font-bold text-primary shadow-sm">
+          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-border/70 bg-background/85 text-base font-bold text-primary shadow-sm">
             AJ
           </div>
           <div>
             <div className="font-display text-lg font-bold tracking-tight text-foreground">Alvin Javelosa</div>
-            <div className="text-xs uppercase tracking-[0.28em] text-muted-foreground">
-              Frontend and Full-Stack Developer
+            <div className="hidden text-xs uppercase tracking-[0.28em] text-muted-foreground sm:block">
+              Senior Frontend &amp; Full-Stack
             </div>
           </div>
         </Link>
@@ -54,7 +72,9 @@ const Header = () => {
             <a
               key={item.href}
               href={item.href}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              data-active={activeHref === item.href}
+              aria-current={activeHref === item.href ? "location" : undefined}
+              className="relative text-sm font-medium text-muted-foreground transition-colors after:absolute after:inset-x-0 after:-bottom-1.5 after:h-px after:origin-left after:scale-x-0 after:bg-primary after:transition-transform after:duration-300 hover:text-foreground data-[active=true]:text-foreground data-[active=true]:after:scale-x-100"
             >
               {item.label}
             </a>

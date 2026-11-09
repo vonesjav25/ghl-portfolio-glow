@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ArrowUpRight, Mail } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { SHOW_PROJECTS } from "@/lib/site-config";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -41,15 +42,17 @@ const Footer = () => {
             </div>
 
             <nav className="flex flex-wrap gap-4 text-sm text-muted-foreground">
-              <a href="#about" className="transition-colors hover:text-foreground">
-                About
-              </a>
               <a href="#experience" className="transition-colors hover:text-foreground">
                 Experience
               </a>
-              <a href="#projects" className="transition-colors hover:text-foreground">
-                Projects
+              <a href="#about" className="transition-colors hover:text-foreground">
+                About
               </a>
+              {SHOW_PROJECTS && (
+                <a href="#projects" className="transition-colors hover:text-foreground">
+                  Projects
+                </a>
+              )}
               <a href="#contact" className="transition-colors hover:text-foreground">
                 Contact
               </a>

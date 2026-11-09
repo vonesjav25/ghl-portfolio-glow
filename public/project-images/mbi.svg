@@ -1,0 +1,54 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" rx="48" fill="#F4FBFF"/>
+  <rect x="72" y="72" width="1456" height="756" rx="40" fill="url(#panel)"/>
+  <circle cx="1220" cy="180" r="190" fill="url(#glowOne)" fill-opacity="0.9"/>
+  <circle cx="320" cy="700" r="230" fill="url(#glowTwo)" fill-opacity="0.78"/>
+  <circle cx="1360" cy="720" r="140" fill="url(#glowThree)" fill-opacity="0.68"/>
+  <rect x="140" y="156" width="156" height="156" rx="34" fill="#FFFFFF" fill-opacity="0.9"/>
+  <path d="M211 194C184.49 194 163 215.49 163 242C163 268.51 184.49 290 211 290C224.794 290 237.229 284.176 245.977 274.85L258.5 287.375C261.395 290.269 266.105 290.269 269 287.375C271.895 284.48 271.895 279.77 269 276.875L256.475 264.35C265.801 255.602 271.625 243.167 271.625 229.373V225H248.875V229.373C248.875 250.293 231.92 267.248 211 267.248C190.08 267.248 173.125 250.293 173.125 229.373C173.125 208.453 190.08 191.498 211 191.498C221.116 191.498 230.277 195.45 237.032 201.898L253.125 185.805C241.449 175.874 226.387 170 211 170V194Z" fill="#18A7E1"/>
+  <path d="M208 220H214V252H208V220Z" fill="#0F172A"/>
+  <path d="M190 252H232V258H190V252Z" fill="#0F172A"/>
+  <text x="340" y="220" fill="#0F172A" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="700">Millennial</text>
+  <text x="340" y="274" fill="#18A7E1" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="700">Business Innovations</text>
+  <text x="140" y="410" fill="#0F172A" font-family="Arial, Helvetica, sans-serif" font-size="106" font-weight="800">You dream it.</text>
+  <text x="140" y="528" fill="#18A7E1" font-family="Arial, Helvetica, sans-serif" font-size="106" font-weight="800">We build it.</text>
+  <text x="142" y="616" fill="#475569" font-family="Arial, Helvetica, sans-serif" font-size="36" font-weight="500">Full-stack product team for MVPs, SaaS platforms, and conversion-focused business sites.</text>
+  <rect x="140" y="676" width="302" height="82" rx="41" fill="url(#cta)"/>
+  <text x="190" y="727" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700">Book a Call</text>
+  <g opacity="0.94">
+    <rect x="1020" y="356" width="116" height="116" rx="28" fill="#FFFFFF"/>
+    <rect x="1158" y="356" width="116" height="116" rx="28" fill="#FFFFFF"/>
+    <rect x="1296" y="356" width="116" height="116" rx="28" fill="#FFFFFF"/>
+    <rect x="1020" y="494" width="116" height="116" rx="28" fill="#FFFFFF"/>
+    <rect x="1158" y="494" width="116" height="116" rx="28" fill="#FFFFFF"/>
+    <rect x="1296" y="494" width="116" height="116" rx="28" fill="#FFFFFF"/>
+  </g>
+  <text x="1055" y="427" fill="#18A7E1" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700">React</text>
+  <text x="1176" y="427" fill="#0F172A" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700">Next.js</text>
+  <text x="1312" y="427" fill="#18A7E1" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700">TypeScript</text>
+  <text x="1048" y="565" fill="#0F172A" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700">Node.js</text>
+  <text x="1184" y="565" fill="#18A7E1" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700">Blog</text>
+  <text x="1320" y="565" fill="#0F172A" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700">Booking</text>
+  <defs>
+    <linearGradient id="panel" x1="200" y1="120" x2="1410" y2="800" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#E6F7FF"/>
+    </linearGradient>
+    <radialGradient id="glowOne" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1220 180) rotate(90) scale(190)">
+      <stop stop-color="#63D1FF"/>
+      <stop offset="1" stop-color="#63D1FF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowTwo" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(320 700) rotate(90) scale(230)">
+      <stop stop-color="#88F0E3"/>
+      <stop offset="1" stop-color="#88F0E3" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowThree" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1360 720) rotate(90) scale(140)">
+      <stop stop-color="#A5F3FC"/>
+      <stop offset="1" stop-color="#A5F3FC" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="cta" x1="140" y1="676" x2="442" y2="758" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#18A7E1"/>
+      <stop offset="1" stop-color="#2F80ED"/>
+    </linearGradient>
+  </defs>
+</svg>
